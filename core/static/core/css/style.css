@@ -15,7 +15,7 @@ input, textarea, select {
   border-color: darkgray !important; /* Cambia "red" al color deseado */
 }
 
- Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
+/*Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
  div {
   border: 1px solid blue;
 }
@@ -85,8 +85,8 @@ button.btn svg {
 }
 
 .index_precio {
-  color: blue;
-  font-size: 20px;
+  color: rgb(167, 8, 153);
+  font-size: 30px;
 }
 
 .index_subscrito {
@@ -115,6 +115,7 @@ button.btn svg {
 }
 .titulos{
   color:#ef89a1;
+  height: 100px;
 }
 .titulos_2{
   background-image: linear-gradient(to right, #000000, #000000);
@@ -137,6 +138,7 @@ button.btn svg {
 }
 
 .precio_oferta_subscrito {
+  color: rgb(167, 8, 153);
   font-size: 35px;
 }
 
@@ -263,9 +265,16 @@ td.ver-detalle:hover {
   
 }
 .boton_ropa{
-  background-image: linear-gradient(to right, #ff7f7f, #ff5454);
-  box-shadow: 0 2px 4px rgba(255, 105, 105, 0.5);
-  border-color: rgba(255, 105, 105, 0.5);
-  color: #000000;
+  background-image: linear-gradient(to right, #ef89a1, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: rgb(0, 0, 0); 
   text-align: center;
 }
+
+.letra_rosa{
+  color:#ef89a1;
+}
+
+
+

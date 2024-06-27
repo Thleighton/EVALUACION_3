@@ -120,7 +120,7 @@ def salir(request):
     return redirect(index)
 
 @user_passes_test(es_usuario_anonimo)
-def registrarme(request):
+def registro(request):
     
     if request.method == 'POST':
         form_usuario = RegistroUsuarioForm(request.POST)
@@ -155,7 +155,7 @@ def registrarme(request):
 
      }
 
-    return render(request, 'core/registrarme.html', context)
+    return render(request, 'core/registro.html', context)
 
 @login_required
 def misdatos(request):
@@ -473,7 +473,7 @@ def agregar_producto_al_carrito(request, producto_id):
         return redirect(index)
     elif es_usuario_anonimo(request.user):
         messages.info(request, 'Para poder comprar, primero debes registrarte como cliente.')
-        return redirect(registrarme)
+        return redirect(registro)
 
     perfil = request.user.perfil
     producto = Producto.objects.get(id=producto_id)
@@ -596,3 +596,6 @@ def poblar(request):
 
 def administracion(request):
     return render(request, 'core/administracion.html')
+
+def ropa(request):
+    return render(request, 'core/ropa.html')
