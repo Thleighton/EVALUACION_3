@@ -40,7 +40,7 @@ def es_usuario_anonimo(user):
 def es_cliente_autenticado_y_activo(user):
     return (not user.is_staff and not user.is_superuser) and user.is_authenticated and user.is_active
 
-def inicio(request):
+def index(request):
 
     if request.method == 'POST':
         # Si la vista fue invocada con un POST es porque el usuario presionó el botón "Buscar" en la página principal.
@@ -65,7 +65,7 @@ def inicio(request):
 
     context = { 'productos': productos }
     
-    return render(request, 'core/inicio.html', context)
+    return render(request, 'core/index.html', context)
 
 def ficha(request, producto_id):
     context = obtener_info_producto(producto_id)
@@ -91,7 +91,7 @@ def ingresar(request):
                 if user.is_active:
                     login(request, user)
                     messages.success(request, f'¡Bienvenido(a) {user.first_name} {user.last_name}!')
-                    return redirect(inicio)
+                    return redirect(index)
                 else:
                     messages.error(request, 'La cuenta está desactivada.')
             else:
@@ -117,7 +117,7 @@ def salir(request):
     apellido = request.user.last_name
     messages.success(request, f'¡Hasta pronto {nombre} {apellido}!')
     logout(request)
-    return redirect(inicio)
+    return redirect(index)
 
 @user_passes_test(es_usuario_anonimo)
 def registrarme(request):
@@ -444,7 +444,7 @@ def calcular_precios_producto(producto):
 
 def comprar_ahora(request):
     messages.error(request, f'El pago aún no ha sido implementado.')
-    return redirect(inicio)
+    return redirect(index)
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def carrito(request):
@@ -470,7 +470,7 @@ def agregar_producto_al_carrito(request, producto_id):
 
     if es_personal_autenticado_y_activo(request.user):
         messages.error(request, f'Para poder comprar debes tener cuenta de Cliente, pero tu cuenta es de {request.user.perfil.tipo_usuario}.')
-        return redirect(inicio)
+        return redirect(index)
     elif es_usuario_anonimo(request.user):
         messages.info(request, 'Para poder comprar, primero debes registrarte como cliente.')
         return redirect(registrarme)
@@ -592,4 +592,7 @@ def poblar(request):
     # del sistema puedan probar el cambio de password de los usuarios, en la página
     # de "Adminstración de usuarios".
     poblar_bd('cri.gomezv@profesor.duoc.cl')
-    return redirect(inicio)
+    return redirect(index)
+
+def administracion(request):
+    return render(request, 'core/administracion.html')

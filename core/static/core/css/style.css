@@ -19,3 +19,253 @@ input, textarea, select {
  div {
   border: 1px solid blue;
 }
+
+body {
+  /* Fondo negro */
+  background-color: #000000;
+  /* Color de texto blanco */
+  color: #FFFFFF;
+}
+
+
+.logo_pequeno{
+  width: 40px;
+  margin-right: 10px;
+}
+
+/*NAVEGADOR ANONIMO*/
+.nav_anonimo {
+  background-image: linear-gradient(to right, white );
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-bottom: 1px solid rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+}
+.boton_buscar_anonimo {
+  background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+}
+.boton_buscar_anonimo_2{
+  background-image: linear-gradient(to right, #ef89a1, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+  text-align: center;
+  
+}
+/*alinear el boton de buscar de anonimo junto al icono*/
+button.btn {
+  display: flex;
+  align-items: center; 
+  margin-right: 5px;
+}
+/*ajustar un margen del boton de buscar de anonimo junto al icono*/
+button.btn svg {
+  margin-right: 5px; 
+}
+
+/*INDEX*/
+/*fondo de los productos*/
+.index_prod_1{
+  background-color: #2a2c47;
+  background-image: linear-gradient(to right, #1a1c35, #59647e);
+  color: #5d6087;
+  max-width: 250px;
+  margin: auto;  
+}
+
+.form-control {
+  max-width: 400px; /* Ancho máximo para los campos de texto */
+}
+
+.index_disponible {
+  color: green;
+  font-weight: bolder;
+}
+
+.index_precio {
+  color: blue;
+  font-size: 20px;
+}
+
+.index_subscrito {
+  color: red;
+  font-size: 20px;
+}
+
+.index_oferta {
+  color: green;
+  font-weight: bolder;
+}
+.letra_blanca{
+  color: #fff;
+}
+.index_foto_fondo {
+  background-color: #000000;
+  border: 2px solid rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+}
+.index_btn_comprar{
+  background-image: linear-gradient(to right, #ef89a1, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;  
+}
+.titulos{
+  color:#ef89a1;
+}
+.titulos_2{
+  background-image: linear-gradient(to right, #000000, #000000);
+  color:#ba5f74;
+}
+.navbar-nav .nav-link {
+  color: #ba5f74 !important; 
+}
+
+/*FICHA*/
+.titulo_producto_ficha {
+  font-weight: bolder;
+  font-size: 40px;
+}
+
+.oferta_en_ficha {
+  color: blue;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+.precio_oferta_subscrito {
+  font-size: 35px;
+}
+
+.descripcion_ficha {
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.foto_ficha {
+  height: 450px;
+  margin-right: 50px;
+  font-weight: bolder;
+}
+
+/*NOSOTROS*/
+.borde_nosotros{
+  background-color: #000000;
+  border-radius: 15px; 
+  border: 3px solid rgba(255, 105, 180, 0.5);
+  
+}
+.boton_correo{
+  background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+
+}
+
+/*REGISTRO*/
+.registro_color{
+  background-color: #e7c2c2;
+  background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
+  color:black;
+}
+
+/*INGRESAR*/
+.cuadro_login {
+  border: 10px solid rgba(255, 105, 180, 0.5);
+  padding: 40px;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  
+}
+.boton_ingresar {
+  background-image: linear-gradient(to right, #ef89a1, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: black; 
+  width: 200px;
+  margin: auto;
+  text-align: center;
+  justify-content: center; 
+  align-items: center;
+  
+}
+
+/*Carrito de compras*/
+th.carrito_color_tabla {
+  background-color: #a7aad2;
+}
+
+.color_footer{
+  color:rgba(255, 105, 180, 0.5);
+}
+
+.color_ropa {
+  background-color: #2a2c47;
+  background-image: linear-gradient(to right, #1a1c35, #59647e);
+  color: white;
+}
+
+/*Admistrador*/
+.admin_foto{
+  max-width: 450px;
+  margin-left: 200px;  
+}
+
+/*Subrayado cuando*/
+
+td.ver-detalle {
+  color: blue; 
+  text-decoration: none; 
+  cursor: pointer; 
+}
+td.ver-detalle:hover {
+  text-decoration: underline; 
+}
+
+.boton_eliminar {
+  background-color: #7073a3;
+  border-color: black; 
+  width: 100px;
+  text-align: center;
+  justify-content: center; 
+  align-items: center;
+  margin: auto ;
+  text-align: center;
+}
+
+/*Botones de ventas*/
+.botones-container button {
+  display: inline-block;
+  margin-right: 5px; /* Espacio entre los botones */
+}
+.error-text {
+  color: red;
+}
+.btn-primary {
+  border:  transparent; /* Borde inicial transparente */
+}
+.btn-primary:hover {
+  outline: none; /* Sin borde azul al enfocar */
+  border: transparent; /* Borde transparente al enfocar o pasar el ratón */
+  background-color: #0056b3; /* Cambia el color de fondo si es necesario */
+}
+.boton_ver_detalle{
+  background-image: linear-gradient(to right, #d8b0b8, #d0a5a5);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+  text-align: center;
+  
+}
+.boton_ropa{
+  background-image: linear-gradient(to right, #ff7f7f, #ff5454);
+  box-shadow: 0 2px 4px rgba(255, 105, 105, 0.5);
+  border-color: rgba(255, 105, 105, 0.5);
+  color: #000000;
+  text-align: center;
+}
