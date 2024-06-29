@@ -160,23 +160,30 @@ def registro(request):
 
 @login_required
 def misdatos(request):
+    usuario = request.user
+    perfil = usuario.perfil  
 
     if request.method == 'POST':
-        
-        # CREAR: un formulario UsuarioForm para recuperar datos del formulario asociados al usuario actual
-        # CREAR: un formulario RegistroPerfilForm para recuperar datos del formulario asociados al perfil del usuario actual
-        # CREAR: lógica para actualizar los datos del usuario
-        pass
+        # Formularios para recuperar y validar los datos del formulario asociados al usuario y al perfil del usuario actual
+        form_usuario = UsuarioForm(request.POST, instance=usuario)
+        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=perfil)
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            form_usuario.save()
+            form_perfil.save()
+            messages.success(request, 'Tu perfil ha sido actualizado con éxito.')
+            return redirect('misdatos')
+        else:
+            messages.error(request, 'No fue posible actualizar tu perfil.')
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
 
-        # CREAR: un formulario UsuarioForm con los datos del usuario actual
-        # CREAR: un formulario RegistroPerfilForm con los datos del usuario actual
-        pass
-    
-    # CREAR: variable de contexto para enviar formulario de usuario y perfil
-    context = { }
-
+        form_usuario = UsuarioForm(instance=usuario)
+        form_perfil = RegistroPerfilForm(instance=perfil)
+    # Variable de contexto para enviar formulario de usuario y perfil
+    context = {
+        'form_usuario': form_usuario,
+        'form_perfil': form_perfil,
+    }
     return render(request, 'core/misdatos.html', context)
 
 @login_required
@@ -272,17 +279,17 @@ def usuarios(request, accion, id):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def bodega(request):
-
     if request.method == 'POST':
         form = BodegaForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('ruta_a_redirigir')  # Reemplaza 'ruta_a_redirigir' con la ruta correcta
+            messages.success(request, '¡El producto se ha guardado correctamente!')
+            return redirect('bodega')
     else:
         form = BodegaForm()
 
     registros = Bodega.objects.all()
-    lista = []
+    productos = []
     for registro in registros:
         vendido = DetalleBoleta.objects.filter(bodega=registro).exists()
         item = {
@@ -290,34 +297,42 @@ def bodega(request):
             'nombre_categoria': registro.producto.categoria.nombre,
             'nombre_producto': registro.producto.nombre,
             'estado': 'Vendido' if vendido else 'En bodega',
-            'imagen': registro.producto.imagen,
+            'imagen': registro.producto.imagen,  # Asegúrate de que `imagen` sea la URL correcta de la imagen del producto
         }
-        lista.append(item)
+        productos.append(item)
 
     context = {
         'form': form,
-        'productos': lista,
+        'productos': productos,
     }
-    
+
     return render(request, 'core/bodega.html', context)
 
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def obtener_productos(request):
-    # La vista obtener_productos la usa la pagina "Administracion de bodega", para
-    # filtrar el combobox de productos cuando el usuario selecciona una categoria
-    
-    # CREAR: Un JSON para devolver los productos que corresponden a la categoria
+    if request.method == 'GET' and 'categoria_id' in request.GET:
+        categoria_id = request.GET.get('categoria_id')
+        productos = Producto.objects.filter(categoria_id=categoria_id).values('id', 'nombre')
 
-    data = []
-    return JsonResponse(data, safe=False)
+        data = list(productos)
+        return JsonResponse(data, safe=False)
+    else:
+        # Si no se proporciona categoria_id o no es un GET, devolver un JSON vacío
+        data = []
+        return JsonResponse(data, safe=False)
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def eliminar_producto_en_bodega(request, bodega_id):
-    producto = get_object_or_404(Producto, id=bodega_id)
-    producto.delete()
-    messages.success(request, f'El producto "{producto.nombre}" ha sido eliminado.')
-    return redirect('productos', 'crear', '0')
+    bodega = get_object_or_404(Bodega, id=bodega_id)
+    
+    if request.method == 'POST':
+        bodega.delete()
+        messages.success(request, f'El producto "{bodega.producto.nombre}" ha sido eliminado de la Bodega.')
+        return redirect('bodega')  # Ajusta 'bodega' por el nombre de tu ruta para la vista de bodega
+    
+    return redirect('core/bodega.html')  # Redirige de vuelta a la página de bodega en caso de acceso GET
+
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def miscompras(request):
@@ -372,26 +387,12 @@ def cambiar_estado_boleta(request, nro_boleta, estado):
 # FUNCIONES AUXILIARES PARA OBTENER: INFORMACION DE PRODUCTOS, CALCULOS DE PRECIOS Y OFERTAS
 
 def obtener_info_producto(producto_id):
-
     # Obtener el producto con el id indicado en "producto_id"
     producto = Producto.objects.get(id=producto_id)
 
-    # Se verificará cuántos productos hay en la bodega que tengan el id indicado en "producto_id".
-    # Para lograrlo se filtrarán en primer lugar los productos con el id indicado. Luego, se 
-    # realizará un JOIN con la tabla de "DetalleBoleta" que es donde se indican los productos
-    # que se han vendido desde la bodega, sin olvidar que los modelos funcionan con Orientación
-    # a Objetos, lo que hace que las consultas sean un poco diferentes a las de SQL. 
-    # DetalleBoleta está relacionada con la tabla Bodega por medio de su propiedad "bodega",
-    # la cual internamente agrega en la tabla DetalleBoleta el campo "bodega_id", que permite
-    # que se relacione con la tabla Bodega. Para calcular cuántos productos quedan en la Bodega
-    # se debe excluir aquellos que ya fueron vendidos, lo que se logra con la condición
-    # "detalleboleta__isnull=False", es decir, se seleccionarán aquellos registros de Bodega
-    # cuya relación con la tabla de DetalleBoleta esté en NULL, osea los que no han sido vendidos.
-    # Si un producto de la Bodega estuviera vendido, entonces tendría su relación "detalleboleta"
-    # con un valor diferente de NULL, ya que el campo "bodega_id" de la tabla DetalleBoleta
-    # tendría el valor del id de Bodega del producto que se vendió.
+    # Verificar cuántos productos hay en la bodega que tengan el id indicado en "producto_id".
     stock = Bodega.objects.filter(producto_id=producto_id).exclude(detalleboleta__isnull=False).count()
-    
+
     # Preparar texto para mostrar estado: en oferta, sin oferta y agotado
     con_oferta = f'<span class="text-primary"> EN OFERTA {producto.descuento_oferta}% DE DESCUENTO </span>'
     sin_oferta = '<span class="text-success"> DISPONIBLE EN BODEGA </span>'
@@ -403,18 +404,18 @@ def obtener_info_producto(producto_id):
         estado = sin_oferta if producto.descuento_oferta == 0 else con_oferta
 
     # Preparar texto para indicar cantidad de productos en stock
-    en_stock = f'En stock: {formatear_numero(stock)} {"unidad" if stock == 1 else "unidades"}'
-   
+    en_stock = f'En stock: {stock} {"unidad" if stock == 1 else "unidades"}'
+
     return {
         'id': producto.id,
         'nombre': producto.nombre,
         'descripcion': producto.descripcion,
         'imagen': producto.imagen,
         'html_estado': estado,
-        'html_precio': obtener_html_precios_producto(producto),
+        'html_precio': obtener_html_precios_producto(producto),  # Debes definir esta función
         'html_stock': en_stock,
     }
-
+    
 def obtener_html_precios_producto(producto):
     
     precio_normal, precio_oferta, precio_subscr, hay_desc_oferta, hay_desc_subscr = calcular_precios_producto(producto)

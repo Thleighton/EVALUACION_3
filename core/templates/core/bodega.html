@@ -14,51 +14,58 @@
             {{ form.producto|as_bootstrap_field }}
             {{ form.cantidad|as_bootstrap_field }}
         </div>
-            <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
+        <div class="col-sm-12 col-md-5">
+            {% if form.producto.value %}
+                <img id="cuadro-imagen" src="{{ form.producto.value.imagen.url }}">
+            {% else %}
+                <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
+            {% endif %}
         </div>
+    </div>
     <div class="text-center mt-2 mb-3">
-        <input class="btn btn-primary boton_buscar_anonimo_2" type="submit" value="Guardar" style="width: 200px;">
+        <input class="btn btn-primary boton_buscar_anonimo_2" type="submit" value="Agregar" style="width: 200px;">
     </div>
 </form>
 <br><br>
 
 {% if productos %}
-    <table id="tabla-principal" class="table table-hover">
-        <thead>
-            <tr class="tabla_carrito">
-                <th class="d-none d-lg-block d-lg-table-cell">ID</th>
-                <th class="d-none d-lg-block d-lg-table-cell">Categoría</th>
-                <th>Producto</th>
-                <th>Estado</th>
-                <th>Imagen</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for producto in productos %}
-            <tr class="tabla_carrito">
-                <td scope="col" style="background-color:#cb6e84; color: #fff" class="d-none d-lg-block d-lg-table-cell">{{ producto.id }}</td>
-                <td scope="col" style="background-color:#cb6e84; color: #fff" class="d-none d-lg-block d-lg-table-cell">{{ producto.categoria }}</td>
-                <td scope="col" style="background-color:#cb6e84; color: #fff">{{ producto.producto }}</td>
-                <td scope="col" style="background-color:#cb6e84; color: #fff">{{ producto.estado }}</td>
-                <td style="background-color:#cb6e84;">
-                    <img src="/media/{{ producto.imagen }}" class="producto-sm id_producto" alt="">
-                </td>
-                <td style="background-color:#cb6e84; color:#fff">
-                    {% if producto.id %}
+    <div class="table-responsive">
+        <table id="tabla-principal" class="table table-hover">
+            <thead>
+                <tr class="tabla_carrito">
+                    <th class="d-none d-lg-block d-lg-table-cell">ID</th>
+                    <th class="d-none d-lg-block d-lg-table-cell">Categoría</th>
+                    <th>Producto</th>
+                    <th>Estado</th>
+                    <th>Imagen</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr class="tabla_carrito">
+                    <td scope="col" style="background-color:#cb6e84;" class="d-none d-lg-block d-lg-table-cell">{{ producto.bodega_id }}</td>
+                    <td scope="col" style="background-color:#cb6e84;" class="d-none d-lg-block d-lg-table-cell">{{ producto.nombre_categoria }}</td>
+                    <td scope="col" style="background-color:#cb6e84;">{{ producto.nombre_producto }}</td>
+                    <td scope="col" style="background-color:#cb6e84;">{{ producto.estado|safe }}</td>
+                    <td style="background-color:#cb6e84;">
+                        <img src="{{ producto.imagen.url }}" class="producto-sm id_producto" alt="">
+                    </td>
+                    <td style="background-color:#cb6e84;">
                         {% if producto.estado == 'En bodega' %}
-                        <a href="{% url 'eliminar_producto_en_bodega' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                            <form action="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm" style="background-color: #e63950; color: #ffffff;">Eliminar</button>
+                            </form>
                         {% else %}
-                        <a href="{% url 'eliminar_producto_en_bodega' producto.id %}" class="btn btn-primary btn-sm disabled">Eliminar</a>
+                            <span class="btn btn-primary btn-sm disabled" style="background-color: #e63950; color: #ffffff;">Eliminar</span>
                         {% endif %}
-                    {% else %}
-                        <span class="btn btn-primary btn-sm disabled">Eliminar</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endif %}
 
 {% endblock content %}
@@ -68,3 +75,8 @@
     <script src="{% static 'core/js/bodega.js' %}"></script>
     <script src="{% static 'core/js/productos.js' %}"></script>
 {% endblock script %}
+
+
+
+
+
