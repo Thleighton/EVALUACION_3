@@ -3,6 +3,7 @@
 {% load custom_filters %}
 
 {% block content %}
+<<<<<<< HEAD
     
   <h1>EDITA TU PERFIL DE CLIENTE</h1>
 
@@ -33,9 +34,45 @@
           </div>
         </div>
       </div>  
+=======
+
+<h1>EDITA TU PERFIL DE CLIENTE</h1>
+
+<form id="form" method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    <div class="row">
+
+      <!-- AREA DE DATOS BASICOS: username, nombre, apellidos, correo -->
+      <div class="col-sm-12 col-md-4">
+
+        {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
+ 
+      </div>
+
+      <!-- AREA DE DATOS DE PERFIL: rut, dirección y subscrito -->
+      <div class="col-sm-12 col-md-5">
+
+        {{ form_perfil|as_bootstrap_form }}
+
+      </div>
+
+      <!-- AREA DE IMAGEN DE PERFIL -->
+      <div class="col-sm-12 col-md-3 text-center">
+        <div class="row">
+          <!-- AREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil actual -->
+          <div class="col-sm-12" style="height: 220px">
+            <img id="cuadro-imagen" src="{{ perfil.imagen.url }}" alt="Imagen de perfil">
+          </div>
+        </div>
+      </div>
+
+>>>>>>> 146be907a2f951937f1252870e6dca72aa199714
     </div>
     <!-- AREA DE BOTONES -->
     <div class="mt-2 mb-3 text-center">
+<<<<<<< HEAD
 
         <button type="submit">Guardar cambios</button>
       
@@ -44,14 +81,31 @@
       
         <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap -->
         <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>  
+=======
+      
+      <button type="submit">Guardar cambios</button>
+      
+      <!-- Boton para "Limpiar formulario" -->
+      <button type="reset" id="limpiar_formulario">Limpiar</button>
+      
+      <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap -->
+      <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>  
+>>>>>>> 146be907a2f951937f1252870e6dca72aa199714
 
     </div>
 
   </form>
   
+<<<<<<< HEAD
 
+=======
+>>>>>>> 146be907a2f951937f1252870e6dca72aa199714
 {% endblock content %}
 
 {% block script %}
   <script src="{% static 'core/js/editar_perfil.js' %}"></script>
+<<<<<<< HEAD
 {% endblock script %}
+=======
+{% endblock script %}
+>>>>>>> 146be907a2f951937f1252870e6dca72aa199714

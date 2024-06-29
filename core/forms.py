@@ -100,6 +100,7 @@ class UsuarioForm(ModelForm):
             'email': 'E-mail',
         }
 
+
 # PARA LA PAGINA MANTENEDOR DE USUARIOS:
 # Crear PerfilForm como una clase que hereda de ModelForm
 # asocialo con el modelo Perfil
