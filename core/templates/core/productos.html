@@ -3,28 +3,29 @@
 {% load custom_filters %}
 
 {% block content %}
-
+  <h1 class="text-center titulos" style="margin: 25px;">Mantenedor de productos</h1>
+  <br><br>
   <form id="form" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
 
    <div class="row">
 
-    <div class ="col-sm-12 col-md-5"> 
-      {{form.categoria|as_bootstrap_field}} 
-      {{form.nombre|as_bootstrap_field}}
-      {{form.descripcion|as_bootstrap_field}} 
-    </div> 
+      <div class ="col-sm-12 col-md-5"> 
+        {{form.categoria|as_bootstrap_field}} 
+        {{form.nombre|as_bootstrap_field}}
+        {{form.descripcion|as_bootstrap_field}} 
+      </div> 
 
-    <div class ="col-sm-12 col-md-4"> 
-      {{form.precio|as_bootstrap_field}} <br> <br>
-      <fieldset class="border border-4 p-2">
-        <legend=> PORCENTAJES DE DESCUENTO </legend=>
-        {{form.descuento_subscriptor|as_bootstrap_field}}  
-        {{form.descuento_oferta|as_bootstrap_field}}  
-      <fieldset>
-    </div>
-    
+      <div class ="col-sm-12 col-md-4"> 
+        {{form.precio|as_bootstrap_field}} <br> <br>
+        <fieldset class="border border-4 p-2">
+          <legend= style="color: #ef89a1; font-weight: bold;"> PORCENTAJES DE DESCUENTO </legend=>
+          <br><br><br><br>
+          {{form.descuento_subscriptor|as_bootstrap_field}}  
+          {{form.descuento_oferta|as_bootstrap_field}}  
+        <fieldset>
+      </div>
 
     <!-- AREA DE CUADRO DE IMAGEN: Imagen del producto (VER COMENTARIO "CUADRO DE IMAGEN" en script.js) -->
     {% if form.imagen.value %}
@@ -35,16 +36,16 @@
     
     {{ form.imagen|as_bootstrap_field }}
 
-
+    <br><br>
     <!-- AREA DE BOTONES -->
     <div class="mt-2 mb-3 text-center">
 
-      <input class="btn btn-primary" type="submit" value="Guardar">
+      <input class="btn btn-primary boton_buscar_anonimo_2" type="submit" value="Guardar">
 
       <a class="btn btn-primary" href="{% url 'productos' 'crear' '0' %}"> Nuevo </a>
 
       <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
-    <button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
+    <a class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </a>  
 
       {% if form.instance.id %}
         <a class="btn btn-primary"  href="{% url 'productos' 'eliminar' form.instance.id %}"> Eliminar </a>
@@ -53,16 +54,13 @@
     </div>
 
   </form>
-
+  <br><br><br><br>
   {% comment %} 
   
   {% if productos %} 
   
   {% endcomment %}
 
-  <div class="instrucciones-para-el-alumno">
-  </div>
-  
     <table id="tabla-principal" class="table table-hover">
         <thead>
             <tr>
@@ -81,13 +79,13 @@
         <tbody>
             {% for producto in productos %}
                 
-            <td> {{producto.id}}
-              <td>{{producto.categoria}}
-                <td>{{producto.nombre}}
-                  <td> {{producto.descripcion}}
-                    <td>{{producto.precio|formatear_dinero}}
-                      <td>{{producto.descuento_subscriptor|formatear_porcentaje}}
-                        <td>{{producto.descuento_oferta|formatear_porcentaje}}
+            <td> {{producto.id}}</td>
+              <td>{{producto.categoria}}</td>
+                <td>{{producto.nombre}}</td>
+                  <td> {{producto.descripcion}}</td>
+                    <td>{{producto.precio|formatear_dinero}}</td>
+                      <td>{{producto.descuento_subscriptor|formatear_porcentaje}}</td>
+                        <td>{{producto.descuento_oferta|formatear_porcentaje}}</td>
               <td>
                   <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
               </td>
@@ -103,6 +101,7 @@
             {% endfor %}
         </tbody>
     </table>
+    <br><br><br>
 
   {% comment %}     
   

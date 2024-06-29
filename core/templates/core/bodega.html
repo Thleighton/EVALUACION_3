@@ -4,79 +4,67 @@
 
 {% block content %}
 
-    <!-- 
-        AREA DE DATOS BASICOS: combobox de categoría, combobox de producto y cantidad.
-        El Combobox de Producto se carga dependiendo del valor el Combobox de Categoría,
-        para ello se usa jquery y ajax.
-        (VER COMENTARIO "COMBOBOX DEPENDIENTES PARA CATEGORIA Y PRODUCTO" en bodega.js)
-    -->
-
-    <div class="instrucciones-para-el-alumno">
-        INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-        - Pega tu código html de la página bodega <br>
+<h1 class="text-center titulos" style="margin: 25px;">Mantenedor de Bodega</h1>
+<br><br>
+<form id="form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-5">
+            {{ form.categoria|as_bootstrap_field }}
+            {{ form.producto|as_bootstrap_field }}
+            {{ form.cantidad|as_bootstrap_field }}
+        </div>
+            <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
+        </div>
+    <div class="text-center mt-2 mb-3">
+        <input class="btn btn-primary boton_buscar_anonimo_2" type="submit" value="Guardar" style="width: 200px;">
     </div>
+</form>
+<br><br>
 
-    <form id="form" method="POST">
+{% if productos %}
+    <table id="tabla-principal" class="table table-hover">
+        <thead>
+            <tr class="tabla_carrito">
+                <th class="d-none d-lg-block d-lg-table-cell">ID</th>
+                <th class="d-none d-lg-block d-lg-table-cell">Categoría</th>
+                <th>Producto</th>
+                <th>Estado</th>
+                <th>Imagen</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr class="tabla_carrito">
+                <td scope="col" style="background-color:#cb6e84; color: #fff" class="d-none d-lg-block d-lg-table-cell">{{ producto.id }}</td>
+                <td scope="col" style="background-color:#cb6e84; color: #fff" class="d-none d-lg-block d-lg-table-cell">{{ producto.categoria }}</td>
+                <td scope="col" style="background-color:#cb6e84; color: #fff">{{ producto.producto }}</td>
+                <td scope="col" style="background-color:#cb6e84; color: #fff">{{ producto.estado }}</td>
+                <td style="background-color:#cb6e84;">
+                    <img src="/media/{{ producto.imagen }}" class="producto-sm id_producto" alt="">
+                </td>
+                <td style="background-color:#cb6e84; color:#fff">
+                    {% if producto.id %}
+                        {% if producto.estado == 'En bodega' %}
+                        <a href="{% url 'eliminar_producto_en_bodega' producto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                        {% else %}
+                        <a href="{% url 'eliminar_producto_en_bodega' producto.id %}" class="btn btn-primary btn-sm disabled">Eliminar</a>
+                        {% endif %}
+                    {% else %}
+                        <span class="btn btn-primary btn-sm disabled">Eliminar</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
 
-        {% csrf_token %}
-
-        <div class="instrucciones-para-el-alumno">
-            INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-            - Pega tu código html del formulario <br>
-            - Si quieres puedes usar los formularios de django de más abajo
-        </div>
-
-        {{ form|as_bootstrap_form }}
-
-        <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
-        
-    </form>
-
-    <!-- AREA DE TABLA DE PRODUCTOS -->
-
-    {% if productos %}
-
-        <div class="instrucciones-para-el-alumno">
-            INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-            - Pega tu código html de la tabla de productos en bodega<br>
-            -Puedes usar las dos columnas de abajo para ver la foto y 
-             eliminar productos en bodega
-        </div>
-        
-        <table id="tabla-principal" class="table table-hover">
-            <thead>
-                <!-- AREA DE TITULOS DE LA TABLA -->
-                <tr>
-                    <th> Imagen </th>
-                    <th> Acción </th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- AREA DE FILAS DE PRODUCTOS -->
-                {% for producto in productos %}
-                    <tr>
-                        <td>
-                            <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
-                        </td>
-                        <!-- Botón de eliminar producto de bodega, se activa sólo para productos no vendidos -->
-                        <td>
-                            {% if producto.estado == 'En bodega' %}
-                                <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" 
-                                    class="btn btn-danger btn-sm"> Eliminar </a>
-                            {% else %}
-                                <a href="{% url 'eliminar_producto_en_bodega' producto.bodega_id %}" 
-                                    class="btn btn-primary btn-sm disabled"> Eliminar </a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-
-    {% endif %}
 {% endblock content %}
 
 {% block script %}
     <input type="hidden" id="url_obtener_productos" value="{% url 'obtener_productos' %}">
     <script src="{% static 'core/js/bodega.js' %}"></script>
+    <script src="{% static 'core/js/productos.js' %}"></script>
 {% endblock script %}

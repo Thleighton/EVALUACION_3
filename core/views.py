@@ -1,4 +1,5 @@
 from datetime import date
+from django.shortcuts import get_object_or_404, redirect
 from .zpoblar import poblar_bd
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
@@ -159,23 +160,31 @@ def registro(request):
 
 @login_required
 def misdatos(request):
-
+    usuario = request.user
+    perfil = usuario.perfil  
     if request.method == 'POST':
+        # Formularios para recuperar y validar los datos del formulario asociados al usuario y al perfil del usuario actual
+        form_usuario = UsuarioForm(request.POST, instance=usuario)
+        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=perfil)
         
-        # CREAR: un formulario UsuarioForm para recuperar datos del formulario asociados al usuario actual
-        # CREAR: un formulario RegistroPerfilForm para recuperar datos del formulario asociados al perfil del usuario actual
-        # CREAR: lógica para actualizar los datos del usuario
-        pass
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            form_usuario.save()
+            form_perfil.save()
+            messages.success(request, 'Tu perfil ha sido actualizado con éxito.')
+            return redirect('misdatos')
+        else:
+            messages.error(request, 'No fue posible actualizar tu perfil.')
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
 
-        # CREAR: un formulario UsuarioForm con los datos del usuario actual
-        # CREAR: un formulario RegistroPerfilForm con los datos del usuario actual
-        pass
+        form_usuario = UsuarioForm(instance=usuario)
+        form_perfil = RegistroPerfilForm(instance=perfil)
     
-    # CREAR: variable de contexto para enviar formulario de usuario y perfil
-    context = { }
-
+     # Variable de contexto para enviar formulario de usuario y perfil
+    context = {
+        'form_usuario': form_usuario,
+        'form_perfil': form_perfil,
+    }
     return render(request, 'core/misdatos.html', context)
 
 @login_required
@@ -273,9 +282,12 @@ def usuarios(request, accion, id):
 def bodega(request):
 
     if request.method == 'POST':
-
-        # CREAR: acciones para agregar productos a la bodega
-        pass
+        form = BodegaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ruta_a_redirigir')  # Reemplaza 'ruta_a_redirigir' con la ruta correcta
+    else:
+        form = BodegaForm()
 
     registros = Bodega.objects.all()
     lista = []
@@ -291,7 +303,7 @@ def bodega(request):
         lista.append(item)
 
     context = {
-        'form': BodegaForm(),
+        'form': form,
         'productos': lista,
     }
     
@@ -310,12 +322,10 @@ def obtener_productos(request):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def eliminar_producto_en_bodega(request, bodega_id):
-    # La vista eliminar_producto_en_bodega la usa la pagina "Administracion de bodega", 
-    # para eliminar productos que el usuario decidio sacar del inventario
-
-    # CREAR: lógica para eliminar un producto de la bodega
-
-    return redirect(bodega)
+    producto = get_object_or_404(Producto, id=bodega_id)
+    producto.delete()
+    messages.success(request, f'El producto "{producto.nombre}" ha sido eliminado.')
+    return redirect('productos', 'crear', '0')
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def miscompras(request):

@@ -1,27 +1,21 @@
-h1 {
-  font-size: x-large;
-  color: blue !important;
-  font-weight: bolder;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
 th {
   vertical-align: top;
-  background-color: lightgray !important;
+  background-color: #ef89a1 !important;
 }
 
 input, textarea, select {
-  border-color: darkgray !important; /* Cambia "red" al color deseado */
+  background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
+    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+    border-color: rgba(255, 105, 180, 0.5);
+    color: #FFFFFF;
 }
 
- Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
- div {
-  border: 1px solid blue;
-}
 
 input, textarea, select {
-  border-color: darkgray !important; /* Cambia "red" al color deseado */
+  background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
+    box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+    border-color: rgba(255, 105, 180, 0.5);
+    color: #FFFFFF;
 }
 
 
@@ -92,11 +86,13 @@ button.btn svg {
 .index_disponible {
   color: green;
   font-weight: bolder;
+  
 }
 
 .index_precio {
   color: rgb(167, 8, 153);
-  font-size: 30px;
+  font-size: 25px;
+  
 }
 
 .index_subscrito {
@@ -128,13 +124,14 @@ button.btn svg {
   box-shadow: 0 2px 4px rgb(246, 91, 192);
   border-color: rgba(255, 105, 180, 0.5);
   color: #ffffff; 
-  width: 250px; 
+  width:260px; 
   height: 50px; 
   font-size: 17px;
   
 }
 .titulos{
   color:#ef89a1;
+  
 }
 .titulos_2{
   background-image: linear-gradient(to right, #000000, #000000);
@@ -298,6 +295,89 @@ td.ver-detalle:hover {
   background-color:#d55674; 
   border-color: #d55674;
 }
+
+.center-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/*boton anterior siguiente de carrito*/
+.page-link {
+  background-color: #ef89a1 !important;
+  color: rgb(0, 0, 0) !important;
+  border-color: rgba(255, 105, 180, 0.5); /* Color de borde blanco */
+  box-shadow: 0 2px 4px rgba(255, 79, 167, 0.807);
+
+}
+.page-link:hover {
+  background-color: #cb6e84 !important;
+  border-color: rgba(255, 105, 180, 0.5); /* Color de borde blanco */
+  box-shadow: 0 2px 4px rgba(255, 79, 167, 0.807);
+  color: rgb(0, 0, 0) !important;
+
+  
+}
+.page-item.active .page-link {
+  background-color: #cb6e84 !important;
+  color: rgba(0, 0, 0, 0.5) !important; /* Color de texto blanco para el número activo */
+  border-color: rgba(255, 105, 180, 0.5); /* Color de borde blanco */
+  box-shadow: 0 2px 4px rgba(255, 79, 167, 0.807);
+
+}
+
+/*boton mostrar y buscar de carrito*/
+.dataTables_length,
+.dataTables_filter {
+    color: #ef89a1 !important; /* Cambia el color del texto */
+}
+.dataTables_length select,
+.dataTables_filter input {
+  background-color:#e7c2c2 !important;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+}
+.dataTables_length select:focus,
+.dataTables_filter input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #cb6e84;
+}
+
+/* Estilos para formularios */
+#form input[type="text"] {
+  background-color: linear-gradient(to right, #e7c2c2, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+}
+#form select {
+  background-color:#e7c2c2 !important;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+}
+
+
+#form input[type="number"] {
+  background-color: linear-gradient(to right, #e7c2c2, #e7c2c2);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-color: rgba(255, 105, 180, 0.5);
+  color: #000000;
+}
+
+.dataTables_info{
+  color: #ef89a1;
+}
+#form label,
+    #form .form-group > label,
+    #form .form-group > .helptext,
+    #form .form-check-label {
+        color: #ef89a1; 
+        font-weight: bold;
+    }
+
+
+
 
 
 

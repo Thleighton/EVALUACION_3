@@ -13,10 +13,14 @@ def formatear_numero(value):
 
 @register.filter
 def formatear_dinero(value):
-    value = round(value)
-    value = f'${value:,}'
-    value = value.replace(',', '.')
-    return value
+    try:
+        value = float(value)  # Intenta convertir a número
+        value = round(value)  # Redondea el número
+        value = f'${value:,}'  # Formatea el número con coma para separación de miles y dólar
+        value = value.replace(',', '.')  # Reemplaza la coma por punto (opcional)
+        return value
+    except (TypeError, ValueError):
+        return value  # Si no se puede convertir a número, devolver el valor original
 
 @register.filter
 def formatear_porcentaje(value):
