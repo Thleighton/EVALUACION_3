@@ -159,22 +159,32 @@ def registro(request):
 
 @login_required
 def misdatos(request):
+    usuario = request.user
+    perfil = usuario.perfil  
 
     if request.method == 'POST':
+        # Formularios para recuperar y validar los datos del formulario asociados al usuario y al perfil del usuario actual
+        form_usuario = UsuarioForm(request.POST, instance=usuario)
+        form_perfil = RegistroPerfilForm(request.POST, request.FILES, instance=perfil)
         
-        # CREAR: un formulario UsuarioForm para recuperar datos del formulario asociados al usuario actual
-        # CREAR: un formulario RegistroPerfilForm para recuperar datos del formulario asociados al perfil del usuario actual
-        # CREAR: lógica para actualizar los datos del usuario
-        pass
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            form_usuario.save()
+            form_perfil.save()
+            messages.success(request, 'Tu perfil ha sido actualizado con éxito.')
+            return redirect('misdatos')
+        else:
+            messages.error(request, 'No fue posible actualizar tu perfil.')
 
-    if request.method == 'GET':
+    elif request.method == 'GET':
+        
+        form_usuario = UsuarioForm(instance=usuario)
+        form_perfil = RegistroPerfilForm(instance=perfil)
 
-        # CREAR: un formulario UsuarioForm con los datos del usuario actual
-        # CREAR: un formulario RegistroPerfilForm con los datos del usuario actual
-        pass
-    
-    # CREAR: variable de contexto para enviar formulario de usuario y perfil
-    context = { }
+    # Variable de contexto para enviar formulario de usuario y perfil
+    context = {
+        'form_usuario': form_usuario,
+        'form_perfil': form_perfil,
+    }
 
     return render(request, 'core/misdatos.html', context)
 

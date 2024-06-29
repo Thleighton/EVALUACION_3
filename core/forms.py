@@ -93,9 +93,13 @@ class RegistroPerfilForm(ModelForm):
 # muestra todos los campos: 'username', 'first_name', 'last_name' e 'email'
 # renombra la etiqueta del campo 'email' por 'E-mail'
 class UsuarioForm(ModelForm):
-   class Meta:
+    class Meta:
         model = User
-        fields = '__all__'
+        fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {
+            'email': 'E-mail',
+        }
+
 
 # PARA LA PAGINA MANTENEDOR DE USUARIOS:
 # Crear PerfilForm como una clase que hereda de ModelForm
