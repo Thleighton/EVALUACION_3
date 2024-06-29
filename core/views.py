@@ -188,13 +188,34 @@ def misdatos(request):
 
 @login_required
 def boleta(request, nro_boleta):
-
-    # CREAR: lógica para ver la boleta
     
-    # CREAR: variable de contexto para enviar boleta y detalle de la boleta
-    context = { }
-
+        # Lógica para ver la boleta
+    
+    boleta = None
+    detalle_boleta=None
+    
+    
+    if Boleta.objects.filter(nro_boleta=nro_boleta).exists():
+        
+        boleta=Boleta.objects.get(nro_boleta=nro_boleta)
+        boleta_es_del_usuario = Boleta.objects.filter(nro_boleta=nro_boleta, cliente=request.user.perfil).exists()
+        if boleta_es_del_usuario or request.user.is_staff:
+            detalle_boleta = DetalleBoleta.objects.filter(boleta=boleta)
+            
+        else:
+            messages.error(request, f'Lo siento la boleta N° {nro_boleta} pertenece a {boleta.cliente}.')
+            boleta= None
+    
+    else:
+            messages.error(request, f'Lo siento la boleta N° {nro_boleta} no existe en la base de datos.')        
+    
+    # Variable de contexto para enviar boleta y detalle de la boleta
+    context = { 
+        'boleta': boleta,
+        'detalle_boleta': detalle_boleta}
+    
     return render(request, 'core/boleta.html', context)
+
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def ventas(request):
@@ -372,12 +393,12 @@ def eliminar_producto_en_bodega(request, bodega_id):
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def miscompras(request):
-
-    # CREAR: lógica para ver las compras del cliente
-
-    # CREAR: variable de contexto para enviar el historial de compras del cliente
-    context = { }
-
+    historial_compras = Boleta.objects.filter(cliente=request.user.perfil).order_by('-fecha_venta')
+    
+    context = {
+        'historial': historial_compras
+    }
+    
     return render(request, 'core/miscompras.html', context)
 
 

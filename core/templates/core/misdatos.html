@@ -3,50 +3,63 @@
 {% load custom_filters %}
 
 {% block content %}
-<h1 class="text-center titulos">Mis datos</h1>
 
-  <form id="form" method="POST" enctype="multipart/form-data">
+
+<br>
+
+<div class="container">
+  <h1 class="text-center titulos">Mis datos</h1>
+  <div class="row" >
+
+  
+
+<form id="form" method="POST" enctype="multipart/form-data">
 
     {% csrf_token %}
+    
+    <br><br>
 
     <div class="row">
-       <!-- AREA DE DATOS BASICOS: username, nombre, apellidos, correo -->
-       <div class="col-sm-12 col-md-4">
-      </div>
-        {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
 
+      <!-- AREA DE DATOS BASICOS: username, nombre, apellidos, correo -->
+      <div class="col-sm-12 col-md-4">
+
+        {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }}
+ 
       </div>
 
       <!-- AREA DE DATOS DE PERFIL: rut, dirección y subscrito -->
       <div class="col-sm-12 col-md-5">
+
         {{ form_perfil|as_bootstrap_form }}
+
       </div>
-       <!-- AREA DE IMAGEN DE PERFIL -->
-       <div class="col-sm-12 col-md-3 text-center">
+
+      <!-- AREA DE IMAGEN DE PERFIL -->
+      <div class="col-sm-12 col-md-3 text-center">
         <div class="row">
           <!-- AREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil actual -->
           <div class="col-sm-12" style="height: 220px">
-            <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}" alt="Imagen de perfil">
+            <img id="cuadro-imagen" src="{{ perfil.imagen.url }}" alt="Imagen de perfil">
           </div>
         </div>
       </div>
 
     </div>
-     <!-- AREA DE BOTONES -->
-     <div class="mt-2 mb-3 text-center">
 
+    <!-- AREA DE BOTONES -->
+    <div class="mt-2 mb-3 text-center">
+      
       <button type="submit">Guardar cambios</button>
-
-      <!-- Boton para "Limpiar formulario" -->
-      <button type="reset" id="limpiar_formulario">Limpiar</button>
-
+      
+      
       <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap -->
       <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>  
 
     </div>
 
   </form>
-
+  
 {% endblock content %}
 
 {% block script %}
