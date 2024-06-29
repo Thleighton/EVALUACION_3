@@ -80,12 +80,12 @@
             {% for producto in productos %}
                 
             <td> {{producto.id}}</td>
-              <td>{{producto.categoria}}</td>
-                <td>{{producto.nombre}}</td>
-                  <td> {{producto.descripcion}}</td>
-                    <td>{{producto.precio|formatear_dinero}}</td>
-                      <td>{{producto.descuento_subscriptor|formatear_porcentaje}}</td>
-                        <td>{{producto.descuento_oferta|formatear_porcentaje}}</td>
+            <td>{{producto.categoria}}</td>
+            <td>{{producto.nombre}}</td>
+            <td> {{producto.descripcion}}</td>
+            <td>{{producto.precio|formatear_dinero}}</td>
+            <td>{{producto.descuento_subscriptor|formatear_porcentaje}}</td>
+            <td>{{producto.descuento_oferta|formatear_porcentaje}}</td>
               <td>
                   <img src="/media/{{ producto.imagen }}" class="producto-sm" alt="">
               </td>

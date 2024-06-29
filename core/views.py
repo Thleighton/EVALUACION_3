@@ -198,11 +198,25 @@ def boleta(request, nro_boleta):
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def ventas(request):
-    
-    # CREAR: lógica para ver las ventas
+    boletas = Boleta.objects.all()
+    historial = []
+    for boleta in boletas:
+        boleta_historial = {
+        'nro_boleta': boleta.nro_boleta,
+        'nom_cliente': f'{boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}',
+        'fecha_venta': boleta.fecha_venta,
+        'fecha_despacho': boleta.fecha_despacho,
+        'fecha_entrega': boleta.fecha_entrega,
+        'subscripto': 'Sí' if boleta.cliente.subscrito else 'No',
+        'total_a_pagar': boleta.total_a_pagar,
+        'estado': boleta.estado,
+    }
+    historial.append(boleta_historial)
 
-    # CREAR: variable de contexto para enviar historial de ventas
-    context = { }
+    
+    context = { 
+        'historial': historial
+    }
 
     return render(request, 'core/ventas.html', context)
 
@@ -253,27 +267,49 @@ def productos(request, accion, id):
 @user_passes_test(es_personal_autenticado_y_activo)
 def usuarios(request, accion, id):
     
-    # CREAR: variables de usuario y perfil
+    usuario = User.objects.get(id=id) if int(id) > 0 else None
+    perfil = usuario.perfil if usuario else None
 
     if request.method == 'POST':
 
-        # CREAR: un formulario UsuarioForm para recuperar datos del formulario asociados al usuario
-        # CREAR: un formulario PerfilForm para recuperar datos del formulario asociados al perfil del usuario
-        # CREAR: lógica para actualizar los datos del usuario
-        pass
+        form_usuario = UsuarioForm(request.POST, instance=usuario)
+
+        form_perfil = PerfilForm(request.POST, request.FILES, instance=perfil)
+
+        if form_usuario.is_valid() and form_perfil.is_valid():
+            usuario = form_usuario.save(commit=False)
+            tipo_usuario = form_perfil.cleaned_data['tipo_usuario']
+            usuario.is_staff = tipo_usuario in ['Administrador', 'Superusuario']
+            perfil = form_perfil.save(commit=False)
+            usuario.save()
+            perfil.usuario_id = usuario.id
+            perfil.save()
+            messages.success(request, f'El usuario {usuario.first_name} {usuario.last_name} fue guardado exitosamente.')
+            return redirect(usuarios, 'actualizar', usuario.id)
+        
+        else:
+            messages.error(request, f'No fue posible guardar el nuevo usuario. Por favor, revisa los errores en el formulario.')
+            show_form_errors(request,[form_usuario, form_perfil])
+
+
     
     if request.method == 'GET':
 
         if accion == 'eliminar':
-            # CREAR: acción de eliminar un usuario
-            pass
+            eliminado, mensaje = eliminar_registro(User, id)
+            messages.success(request, mensaje)
+            return redirect(usuarios, 'crear', '0')
+    
         else:
-            # CREAR: un formulario UsuarioForm asociado al usuario
-            # CREAR: un formulario PerfilForm asociado al perfil del usuario
-            pass
+            form_usuario = UsuarioForm(instance=usuario)
+            form_perfil = PerfilForm(instance=perfil)
 
     # CREAR: variable de contexto para enviar el formulario de usuario, formulario de perfil y todos los usuarios
-    context = { }
+    context = { 
+         'form_usuario': form_usuario,
+         'form_perfil': form_perfil,
+         'usuarios': User.objects.all(),
+    }
 
     return render(request, 'core/usuarios.html', context)
 

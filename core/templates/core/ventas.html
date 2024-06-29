@@ -4,10 +4,9 @@
 
 {% block content %}
     
-<div class="instrucciones-para-el-alumno">
-    INSTRUCCIONES PARA EL ALUMNO (ELIMINALO DESPUES DE LEERLO):<br>
-    - Construye tu tabla de historial de ventas, pero puedes usar los campos sugeridos. <br>
-  </div>
+
+<h1 class="text-center titulos">Historal de ventas</h1>
+
 
     <table id="tabla-principal" class="table table-hover">
         <thead>
@@ -31,18 +30,14 @@
                 {% else %}
                     <tr>
                 {% endif %}
-
-                    <td>
-                        boleta.nro_boleta <br>
-                        boleta.nom_cliente <br>
-                        boleta.fecha_venta|formatear_fecha <br>
-                        boleta.fecha_despacho|formatear_fecha <br>
-                        boleta.fecha_entrega|formatear_fecha <br>
-                        boleta.subscrito <br>
-                        boleta.total_a_pagar|formatear_dinero <br>
-                        boleta.estado <br>
-                    </td>
-
+                    <td>{{boleta.nro_boleta}}</td> 
+                    <td>{{boleta.nom_cliente}} </td>
+                    <td>{{ boleta.fecha_venta|formatear_fecha}} </td>
+                    <td>{{boleta.fecha_despacho|formatear_fecha}} </td>
+                    <td>{{boleta.fecha_entrega|formatear_fecha}} </td>
+                    <td>{{boleta.subscrito}} </td>
+                    <td>{{boleta.total_a_pagar|formatear_dinero}} </td>
+                    <td>{{boleta.estado}} </td>
                     <td>
                         <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
                     </td>
