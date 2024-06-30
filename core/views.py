@@ -337,16 +337,19 @@ def usuarios(request, accion, id):
 @user_passes_test(es_personal_autenticado_y_activo)
 def bodega(request):
     if request.method == 'POST':
-        form = BodegaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, '¡El producto se ha guardado correctamente!')
-            return redirect('bodega')
-    else:
-        form = BodegaForm()
+
+        producto_id = request.POST.get('producto')
+        producto = Producto.objects.get(id=producto_id)
+        cantidad = int(request.POST.get('cantidad'))
+        for cantidad in range(1, cantidad + 1):
+            Bodega.objects.create(producto=producto)
+        if cantidad == 1:
+            messages.success(request, f'Se ha agregado 1 nuevo "{producto.nombre}" a la bodega')
+        else:
+            messages.success(request, f'Se han agregado {cantidad} productos de "{producto.nombre}" a la bodega')
 
     registros = Bodega.objects.all()
-    productos = []
+    lista = []
     for registro in registros:
         vendido = DetalleBoleta.objects.filter(bodega=registro).exists()
         item = {
@@ -354,30 +357,36 @@ def bodega(request):
             'nombre_categoria': registro.producto.categoria.nombre,
             'nombre_producto': registro.producto.nombre,
             'estado': 'Vendido' if vendido else 'En bodega',
-            'imagen': registro.producto.imagen,  
+            'imagen': registro.producto.imagen,
         }
-        productos.append(item)
-
+        lista.append(item)
+    
     context = {
-        'form': form,
-        'productos': productos,
+        'form': BodegaForm(),
+        'productos': lista,
+        
     }
+
+
 
     return render(request, 'core/bodega.html', context)
 
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def obtener_productos(request):
-    if request.method == 'GET' and 'categoria_id' in request.GET:
-        categoria_id = request.GET.get('categoria_id')
-        productos = Producto.objects.filter(categoria_id=categoria_id).values('id', 'nombre')
 
-        data = list(productos)
+        categoria_id = request.GET.get('categoria_id')
+        productos = Producto.objects.filter(categoria_id=categoria_id)
+        data = [
+            {
+                'id': producto.id,
+                'nombre': producto.nombre,
+                'imagen': producto.imagen.url
+            } for producto in productos
+        ]
         return JsonResponse(data, safe=False)
-    else:
-        # Si no se proporciona categoria_id o no es un GET, devolver un JSON vacío
-        data = []
-        return JsonResponse(data, safe=False)
+    
+    
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def eliminar_producto_en_bodega(request, bodega_id):

@@ -14,6 +14,7 @@
             {{ form.producto|as_bootstrap_field }}
             {{ form.cantidad|as_bootstrap_field }}
         </div>
+        
         <div class="col-sm-12 col-md-5">
             {% if form.producto.value %}
                 <img id="cuadro-imagen" src="{{ form.producto.value.imagen.url }}">
