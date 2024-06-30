@@ -3,40 +3,37 @@
 {% load custom_filters %}
 
 {% block content %}
-    
 <div class="container">
     <h1 class="text-center titulos">Historial de compras</h1>
-    <div class="row" >
-    
-        
-        
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Nro Boleta</th>
-                <th>Fecha Venta</th>
-                <th>Fecha Despacho</th>
-                <th>Fecha Entrega</th>
-                <th>Total a Pagar</th>
-                <th>Estado</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for boleta in historial %}
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td>{{ boleta.nro_boleta }}</td>
-                    <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
-                    <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
-                    <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
-                    <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
-                    <td>{{ boleta.estado }}</td>
-                    <td>
-                        <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
-                    </td>
+                    <th>Nro Boleta</th>
+                    <th>Fecha Venta</th>
+                    <th>Fecha Despacho</th>
+                    <th>Fecha Entrega</th>
+                    <th>Total a Pagar</th>
+                    <th>Estado</th>
+                    <th>Opciones</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                {% for boleta in historial %}
+                    <tr>
+                        <td>{{ boleta.nro_boleta }}</td>
+                        <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                        <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                        <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
+                        <td class="{% if boleta.estado == 'Anulado' %}texto-rojo{% endif %}">{{ boleta.estado }}</td>
+                        <td>
+                            <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}

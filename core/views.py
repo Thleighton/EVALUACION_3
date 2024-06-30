@@ -203,7 +203,7 @@ def boleta(request, nro_boleta):
             detalle_boleta = DetalleBoleta.objects.filter(boleta=boleta)
             
         else:
-            messages.error(request, f'Lo siento la boleta N° {nro_boleta} pertenece a {boleta.cliente}.')
+            messages.error(request, f'Lo siento la boleta N° {nro_boleta} pertenece a {boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}.')
             boleta= None
     
     else:

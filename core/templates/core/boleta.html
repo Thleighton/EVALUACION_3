@@ -74,7 +74,7 @@
         </table>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-right">
                 <p>
                     Monto sin IVA: {{ boleta.monto_sin_iva|formatear_dinero }} <br>
                     IVA: {{ boleta.iva|formatear_dinero }} <br>
@@ -82,6 +82,7 @@
                 </p>
             </div>
         </div>
+        
 
     {% else %}
     <div class="container">
