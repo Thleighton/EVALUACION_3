@@ -36,30 +36,24 @@
       </div>
 
       <!-- AREA DE IMAGEN DE PERFIL -->
-      <div class="col-sm-12 col-md-3 text-center">
-        <div class="row">
-          <!-- AREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil actual -->
-          <div class="col-sm-12" style="height: 220px">
-            <img id="cuadro-imagen" src="{{ perfil.imagen.url }}" alt="Imagen de perfil">
-          </div>
-        </div>
-      </div>
-
+      <div class="col-sm-12 col-md-3">
+        {% if form_perfil.instance.imagen %}
+            <img id="cuadro-imagen" src="{{ form_perfil.instance.imagen.url }}" alt="Imagen del Usuario">
+        {% endif %}
+      </div>  
     </div>
-
+    <br><br><br>
     <!-- AREA DE BOTONES -->
     <div class="mt-2 mb-3 text-center">
-      
-      <button type="submit">Guardar cambios</button>
-      
+      <div class="btn-group text-center">
+      <button class="btn btn-primary boton_buscar_anonimo_2" type="submit">Guardar cambios</button>
       
       <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap -->
-      <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>  
+      <button class="btn btn-primary boton_buscar_anonimo_2" onclick="event.preventDefault(); document.getElementById('id_imagen').click();">Seleccionar imagen</button>  
 
     </div>
-
   </form>
-  
+  <br><br><br><br>
 {% endblock content %}
 
 {% block script %}

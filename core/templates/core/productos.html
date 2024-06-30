@@ -52,7 +52,7 @@
       <a class="btn btn-primary boton_buscar_anonimo_2" href="{% url 'productos' 'crear' '0' %}"> Nuevo </a>
 
       <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
-    <a class="btn btn-primary boton_buscar_anonimo_2" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </a>  
+      <a class="btn btn-primary boton_buscar_anonimo_2" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </a>  
 
       {% if form.instance.id %}
         <a class="btn btn-primary" style="background-color: #e63950; color: #ffffff;"  href="{% url 'productos' 'eliminar' form.instance.id %}"> Eliminar </a>
@@ -61,7 +61,7 @@
     </div>
 
   </form>
-  <br><br><br><br>
+  <br>
   {% comment %} 
   
   {% if productos %} 

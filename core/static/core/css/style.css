@@ -39,6 +39,7 @@ body {
   border-bottom: 1px solid rgba(255, 105, 180, 0.5);
   color: #FFFFFF;
 }
+
 .boton_buscar_anonimo {
   background-image: linear-gradient(to right, #e7c2c2, #e7c2c2);
   box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
@@ -350,12 +351,7 @@ td.ver-detalle:hover {
   border-color: rgba(255, 105, 180, 0.5);
   color: #000000;
 }
-#form select {
-  background-color:#e7c2c2 !important;
-  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
-  border-color: rgba(255, 105, 180, 0.5);
-  color: #000000;
-}
+
 
 
 #form input[type="number"] {
@@ -375,5 +371,50 @@ td.ver-detalle:hover {
     color: #ef89a1;
     font-weight: bold;
     font-size: 18px; 
+}
+
+.form-text {
+
+  color: #bc6579 !important;
+}
+/* Estilos para form-select */
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  background-color: #e7c2c2 !important;
+  border: 1px solid rgba(255, 105, 180, 0.5);
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  user-select: auto;
+}
+
+/* Estilo cuando el selector está enfocado */
+.form-select:focus {
+  border-color: #ff69b4;
+  box-shadow: 0 0 5px rgba(255, 105, 180, 0.8);
+}
+
+p{
+  color: #ef89a1;
+}
+.card-body{
+  background-color: #000000;
+  border: 2px solid rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
+   
+}
+.card .card-img-top {
+  background-color: #000000;
+  border: 2px solid rgba(255, 105, 180, 0.5);
+  color: #FFFFFF;
+  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
 }
 

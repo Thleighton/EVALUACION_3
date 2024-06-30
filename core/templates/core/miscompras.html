@@ -8,7 +8,7 @@
     <div class="row">
         <table class="table table-hover">
             <thead>
-                <tr>
+                <tr class="tabla_carrito">
                     <th>Nro Boleta</th>
                     <th>Fecha Venta</th>
                     <th>Fecha Despacho</th>
@@ -18,17 +18,17 @@
                     <th>Opciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tabla_carrito">
                 {% for boleta in historial %}
                     <tr>
-                        <td>{{ boleta.nro_boleta }}</td>
-                        <td>{{ boleta.fecha_venta|formatear_fecha }}</td>
-                        <td>{{ boleta.fecha_despacho|formatear_fecha }}</td>
-                        <td>{{ boleta.fecha_entrega|formatear_fecha }}</td>
-                        <td>{{ boleta.total_a_pagar|formatear_dinero }}</td>
-                        <td class="{% if boleta.estado == 'Anulado' %}texto-rojo{% endif %}">{{ boleta.estado }}</td>
-                        <td>
-                            <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary">Detalle</a>
+                        <td style="background-color:#cb6e84;">{{ boleta.nro_boleta }}</td>
+                        <td style="background-color:#cb6e84;">{{ boleta.fecha_venta|formatear_fecha }}</td>
+                        <td style="background-color:#cb6e84;">{{ boleta.fecha_despacho|formatear_fecha }}</td>
+                        <td style="background-color:#cb6e84;">{{ boleta.fecha_entrega|formatear_fecha }}</td>
+                        <td style="background-color:#cb6e84;">{{ boleta.total_a_pagar|formatear_dinero }}</td>
+                        <td style="background-color:#cb6e84;" class="{% if boleta.estado == 'Anulado' %}texto-rojo{% endif %}">{{ boleta.estado }}</td>
+                        <td style="background-color:#cb6e84;">
+                            <a href="{% url 'boleta' boleta.nro_boleta %}" class="btn btn-sm btn-primary boton_buscar_anonimo_2">Detalle</a>
                         </td>
                     </tr>
                 {% endfor %}
