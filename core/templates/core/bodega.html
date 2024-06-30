@@ -14,16 +14,25 @@
             {{ form.producto|as_bootstrap_field }}
             {{ form.cantidad|as_bootstrap_field }}
         </div>
-        <div class="col-sm-12 col-md-5">
-            {% if form.producto.value %}
-                <img id="cuadro-imagen" src="{{ form.producto.value.imagen.url }}">
+        <div class="col-sm-12 col-md-3">
+            {% if form.imagen.value %}
+                <img id="cuadro-imagen" src="/media/{{ form.imagen|as_bootstrap_form }}">
             {% else %}
                 <img id="cuadro-imagen" src="{% static 'core/img/sin-imagen.png' %}">
             {% endif %}
+            
+            {{ form.imagen|as_bootstrap_field }}
+            
+            {% if form.imagen.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.imagen.errors }}
+                </div>
+            {% endif %}
         </div>
-    </div>
+        <br><br><br><br><br><br><br><br><br>
     <div class="text-center mt-2 mb-3">
         <input class="btn btn-primary boton_buscar_anonimo_2" type="submit" value="Agregar" style="width: 200px;">
+        <a class="btn btn-primary boton_buscar_anonimo_2" href="{% url 'bodega' %}" style="width: 200px;"> Nuevo </a>
     </div>
 </form>
 <br><br>
@@ -49,7 +58,7 @@
                     <td scope="col" style="background-color:#cb6e84;">{{ producto.nombre_producto }}</td>
                     <td scope="col" style="background-color:#cb6e84;">{{ producto.estado|safe }}</td>
                     <td style="background-color:#cb6e84;">
-                        <img src="{{ producto.imagen.url }}" class="producto-sm id_producto" alt="">
+                        <img id="idcuadro-imagen" src="{{ producto.imagen.url }}" class="producto-sm id_producto" alt="">
                     </td>
                     <td style="background-color:#cb6e84;">
                         {% if producto.estado == 'En bodega' %}

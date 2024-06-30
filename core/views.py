@@ -354,7 +354,7 @@ def bodega(request):
             'nombre_categoria': registro.producto.categoria.nombre,
             'nombre_producto': registro.producto.nombre,
             'estado': 'Vendido' if vendido else 'En bodega',
-            'imagen': registro.producto.imagen,  # Asegúrate de que `imagen` sea la URL correcta de la imagen del producto
+            'imagen': registro.producto.imagen,  
         }
         productos.append(item)
 

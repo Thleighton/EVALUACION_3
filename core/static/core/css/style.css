@@ -369,10 +369,11 @@ td.ver-detalle:hover {
   color: #ef89a1;
 }
 #form label,
-    #form .form-group > label,
-    #form .form-group > .helptext,
-    #form .form-check-label {
-        color: #ef89a1; 
-        font-weight: bold;
-    }
+#form .form-group > label,
+#form .form-group > .helptext,
+#form .form-check-label {
+    color: #ef89a1;
+    font-weight: bold;
+    font-size: 18px; 
+}
 
