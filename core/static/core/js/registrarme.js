@@ -44,6 +44,7 @@ $(document).ready(function() {
         'password1': {
           required: true,
           minlength: 8,
+          maxlength: 8,
         },
         'password2': {
           required: true,
@@ -76,6 +77,7 @@ $(document).ready(function() {
         'password1': {
           required: 'Debe ingresar una contraseña',
           minlength: 'La contraseña debe tener al menos 8 caracteres',
+          maxlength: 'La contraseña debe tener maximo 15 caracteres',
         },
         'password2': {
           required: 'Debe ingresar una contraseña',
