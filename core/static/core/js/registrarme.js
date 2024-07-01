@@ -44,12 +44,12 @@ $(document).ready(function() {
         'password1': {
           required: true,
           minlength: 8,
-          maxlength:15,
+          maxlength: 15,
         },
         'password2': {
           required: true,
           equalTo: '#id_password1'
-        },
+        }
       },
       messages: {
         'username': {
@@ -77,7 +77,7 @@ $(document).ready(function() {
         'password1': {
           required: 'Debe ingresar una contraseña',
           minlength: 'La contraseña debe tener al menos 8 caracteres',
-          maxlength:'La contraseña debe tener maximo 15 caracteres',
+          maxlength: 'La contraseña debe tener maximo 15 caracteres',
         },
         'password2': {
           required: 'Debe ingresar una contraseña',
@@ -106,7 +106,7 @@ $(document).ready(function() {
           $('#id_last_name').val(item.name.last);
           $('#id_email').val(item.email);
           $('#id_rut').val('11.111.111-1');
-          var dir = `${item.location.street.number} ${item.location.street.name}\n${item.location.city}\n${item.location.country}`;
+          dir = `${item.location.street.number} ${item.location.street.name}\n${item.location.city}\n${item.location.country}`;
           $('#id_direccion').val(dir);
           $('#id_subscrito').val(true);
           $('#id_imagen').val('');
