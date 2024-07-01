@@ -91,7 +91,11 @@ class UsuarioForm(ModelForm):
 # crea los widgets para:
 #   - direccion como Textarea,
 #   - imagen como FileInput()
-class PerfilForm(ModelForm):
+class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
         fields = '__all__'
+        widgets = {
+            'direccion': forms.Textarea(),
+            'imagen': forms.FileInput(),
+        }

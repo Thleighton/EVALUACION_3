@@ -12,82 +12,89 @@ $(document).ready(function() {
     + 'localidad o ciudad, código postal o de área\n'
     + 'estado o provincia, ciudad, país');
 
-  // Agregar una validación por defecto para que la imagen la exija como campo obligatorio
+  // Agregar una validación por defecto para que el campo sea obligatorio
   $.extend($.validator.messages, {
     required: "Este campo es requerido",
   });
 
+  // Agregar método de validación para nombres y apellidos
+  $.validator.addMethod("soloLetras", function(value, element) {
+    return this.optional(element) || /^[a-zA-Z\s]*$/.test(value);
+  }, "Sólo se permiten letras y espacios en blanco.");
+
+  // Forzar mayúscula en la letra del RUT
+  $('#id_rut').on('keyup', function(e) {
+    $(this).val($(this).val().toUpperCase());
+  });
+
+  // Validación del formulario
   $('#form').validate({ 
-      rules: {
-        'username': {
-          required: true,
+    rules: {
+      'username': { required: true },
+      'first_name': { required: true, soloLetras: true },
+      'last_name': { required: true, soloLetras: true },
+      'email': { required: true, email: true },
+      'rut': { required: true },
+      'direccion': { required: true },
+      'password1': { required: true, minlength: 8, maxlength: 15 },
+      'password2': { required: true, equalTo: '#id_password1' }
+    },
+    messages: {
+      'username': { required: 'Debe ingresar un nombre de usuario' },
+      'first_name': { required: 'Debe ingresar su nombre', soloLetras: "El nombre sólo puede contener letras y espacios en blanco"},
+      'last_name': { required: 'Debe ingresar sus apellidos', soloLetras: "El nombre sólo puede contener letras y espacios en blanco" },
+      'email': { required: 'Debe ingresar su correo', email: 'Ingrese un correo válido' },
+      'rut': { required: 'Debe ingresar su RUT' },
+      'direccion': { required: 'Debe ingresar su dirección' },
+      'password1': { required: 'Debe ingresar una contraseña', minlength: 'La contraseña debe tener al menos 8 caracteres', maxlength: 'La contraseña debe tener máximo 15 caracteres' },
+      'password2': { required: 'Debe ingresar una contraseña', equalTo: 'Las contraseñas no coinciden' }
+    },
+    errorPlacement: function(error, element) {
+      error.insertAfter(element); // Inserta el mensaje de error después del elemento
+      error.addClass('error-message'); // Aplica una clase al mensaje de error
+    },
+  });
+
+  // Capturar el evento de submit del formulario
+  $('#form').submit(function(event) {
+    event.preventDefault(); // Evitar que se envíe el formulario automáticamente
+
+    // Validar el formulario
+    if ($('#form').valid()) {
+      // Si el formulario es válido, proceder con el envío de datos
+      console.log("Formulario válido. Enviando datos...");
+
+      // Aquí podrías hacer una petición AJAX si es necesario
+
+      // Simular un registro exitoso con SweetAlert
+      Swal.fire({
+        icon: 'success',
+        title: '¡Registro exitoso!',
+        text: 'Tu cuenta ha sido creada correctamente.',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
         },
-        'first_name': {
-          required: true,
-          soloLetras: true,
-        },
-        'last_name': {
-          required: true,
-          soloLetras: true,
-        },
-        'email': {
-          required: true,
-          emailCompleto: true,
-        },
-        'rut': {
-          required: true,
-          rutChileno: true,
-        },
-        'direccion': {
-          required: true,
-        },
-        'password1': {
-          required: true,
-          minlength: 8,
-          maxlength: 15,
-        },
-        'password2': {
-          required: true,
-          equalTo: '#id_password1'
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
         }
-      },
-      messages: {
-        'username': {
-          required: 'Debe ingresar un nombre de usuario',
+      });
+
+    } else {
+      // Si el formulario no es válido, mostrar el primer mensaje de error
+      var errorMessage = $('#form .error-message').first().text();
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al registrar',
+        text: errorMessage,
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
         },
-        'first_name': {
-          required: 'Debe ingresar su nombre',
-          soloLetras: "El nombre sólo puede contener letras y espacios en blanco",
-        },
-        'last_name': {
-          required: 'Debe ingresar sus apellidos',
-          soloLetras: "Los apellidos sólo pueden contener letras y espacios en blanco",
-        },
-        'email': {
-          required: 'Debe ingresar su correo',
-          emailCompleto: 'El formato del correo no es válido',
-        },
-        'rut': {
-          required: 'Debe ingresar su RUT',
-          rutChileno: 'El formato del RUT no es válido',
-        },
-        'direccion': {
-          required: 'Debe ingresar su dirección',
-        },
-        'password1': {
-          required: 'Debe ingresar una contraseña',
-          minlength: 'La contraseña debe tener al menos 8 caracteres',
-          maxlength: 'La contraseña debe tener maximo 15 caracteres',
-        },
-        'password2': {
-          required: 'Debe ingresar una contraseña',
-          equalTo: 'Debe repetir la contraseña anterior'
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
         }
-      },
-      errorPlacement: function(error, element) {
-        error.insertAfter(element); // Inserta el mensaje de error después del elemento
-        error.addClass('error-message'); // Aplica una clase al mensaje de error
-      },
+      });
+    }
   });
 
   // CREAR USUARIO DE PRUEBA: Esta función permite crear un usuario de prueba usando 
