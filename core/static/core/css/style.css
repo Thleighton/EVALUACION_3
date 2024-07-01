@@ -416,7 +416,6 @@ p{
 
 #help_text_id_subscrito {
   color: #ef89a1; /* Cambia el color del texto a rosado */
-  font-size: 0.500em; /* Ajusta el tamaño del texto a pequeño (ej. 14px) */
   width: auto; /* Elimina el ancho de 2px */
 }
 .id_subscrito{
@@ -448,5 +447,7 @@ input[type="checkbox"]:checked::before {
   left: 50%; /* Centra horizontalmente */
   transform: translate(-50%, -50%); /* Ajusta el tick al centro */
 }
-
+.table-hover .letra-boleta-anulada td {
+  color: #bd273b !important;
+}
 

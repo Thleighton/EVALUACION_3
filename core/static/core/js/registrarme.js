@@ -50,9 +50,6 @@ $(document).ready(function() {
           required: true,
           equalTo: '#id_password1'
         },
-        'imagen': {
-          required: true,  // Validación requerida para la imagen
-        }
       },
       messages: {
         'username': {
@@ -85,9 +82,6 @@ $(document).ready(function() {
         'password2': {
           required: 'Debe ingresar una contraseña',
           equalTo: 'Debe repetir la contraseña anterior'
-        },
-        'imagen': {
-          required: 'Debe seleccionar una imagen',  // Mensaje de error para la imagen requerida
         }
       },
       errorPlacement: function(error, element) {
