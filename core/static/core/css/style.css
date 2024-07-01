@@ -406,15 +406,47 @@ p{
 }
 .card-body{
   background-color: #000000;
-  border: 2px solid rgba(255, 105, 180, 0.5);
   color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
    
 }
 .card .card-img-top {
   background-color: #000000;
-  border: 2px solid rgba(255, 105, 180, 0.5);
   color: #FFFFFF;
-  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.5);
 }
+
+#help_text_id_subscrito {
+  color: #ef89a1; /* Cambia el color del texto a rosado */
+  font-size: 0.500em; /* Ajusta el tamaño del texto a pequeño (ej. 14px) */
+  width: auto; /* Elimina el ancho de 2px */
+}
+.id_subscrito{
+  width: auto; 
+}
+input[type="checkbox"] {
+  width: 25px; /* Ancho del checkbox */
+  height: 25px; /* Altura del checkbox */
+  margin-right: 10px; /* Espacio entre el checkbox y el texto */
+  appearance: none; /* Elimina el estilo predeterminado del checkbox */
+  background-color: #fff; /* Fondo del checkbox */
+  border: 2px solid #ef89a1; /* Borde del checkbox */
+  border-radius: 3px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  position: relative; /* Necesario para posicionar el tick */
+}
+
+input[type="checkbox"]:checked {
+  background-color: #ef89a1; /* Fondo rosado cuando está seleccionado */
+  border-color: #ef89a1; /* Borde rosado cuando está seleccionado */
+}
+
+input[type="checkbox"]:checked::before {
+  content: ''; /* El tick */
+  color: #fff; /* Color blanco del tick */
+  font-size: 12px; /* Tamaño del tick */
+  position: absolute; /* Posicionamiento absoluto */
+  top: 50%; /* Centra verticalmente */
+  left: 50%; /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta el tick al centro */
+}
+
 

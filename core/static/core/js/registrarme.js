@@ -44,10 +44,14 @@ $(document).ready(function() {
         'password1': {
           required: true,
           minlength: 8,
+          maxlength:15,
         },
         'password2': {
           required: true,
           equalTo: '#id_password1'
+        },
+        'imagen': {
+          required: true,  // Validación requerida para la imagen
         }
       },
       messages: {
@@ -76,10 +80,14 @@ $(document).ready(function() {
         'password1': {
           required: 'Debe ingresar una contraseña',
           minlength: 'La contraseña debe tener al menos 8 caracteres',
+          maxlength:'La contraseña debe tener maximo 15 caracteres',
         },
         'password2': {
           required: 'Debe ingresar una contraseña',
           equalTo: 'Debe repetir la contraseña anterior'
+        },
+        'imagen': {
+          required: 'Debe seleccionar una imagen',  // Mensaje de error para la imagen requerida
         }
       },
       errorPlacement: function(error, element) {
@@ -104,7 +112,7 @@ $(document).ready(function() {
           $('#id_last_name').val(item.name.last);
           $('#id_email').val(item.email);
           $('#id_rut').val('11.111.111-1');
-          dir = `${item.location.street.number} ${item.location.street.name}\n${item.location.city}\n${item.location.country}`;
+          var dir = `${item.location.street.number} ${item.location.street.name}\n${item.location.city}\n${item.location.country}`;
           $('#id_direccion').val(dir);
           $('#id_subscrito').val(true);
           $('#id_imagen').val('');
