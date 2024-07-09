@@ -223,23 +223,23 @@ def ventas(request):
     historial = []
     for boleta in boletas:
         boleta_historial = {
-        'nro_boleta': boleta.nro_boleta,
-        'nom_cliente': f'{boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}',
-        'fecha_venta': boleta.fecha_venta,
-        'fecha_despacho': boleta.fecha_despacho,
-        'fecha_entrega': boleta.fecha_entrega,
-        'subscripto': 'Sí' if boleta.cliente.subscrito else 'No',
-        'total_a_pagar': boleta.total_a_pagar,
-        'estado': boleta.estado,
-    }
-    historial.append(boleta_historial)
+            'nro_boleta': boleta.nro_boleta,
+            'nom_cliente': f'{boleta.cliente.usuario.first_name} {boleta.cliente.usuario.last_name}',
+            'fecha_venta': boleta.fecha_venta,
+            'fecha_despacho': boleta.fecha_despacho,
+            'fecha_entrega': boleta.fecha_entrega,
+            'subscrito': 'Sí' if boleta.cliente.subscrito else 'No',  # Corrigido 'subscripto' a 'subscrito'
+            'total_a_pagar': boleta.total_a_pagar,
+            'estado': boleta.estado,
+        }
+        historial.append(boleta_historial)  # Asegúrate de que esta línea está correctamente indentada
 
-    
     context = { 
         'historial': historial
     }
 
     return render(request, 'core/ventas.html', context)
+
 
 @user_passes_test(es_personal_autenticado_y_activo)
 def productos(request, accion, id):
@@ -250,7 +250,7 @@ def productos(request, accion, id):
          form= ProductoForm(request.POST, request.FILES) 
 
         elif accion == 'actualizar':
-         form= ProductoForm(request.POST, request.FILES, instance=Producto.Objects.get(id=id)) 
+         form= ProductoForm(request.POST, request.FILES, instance=Producto.objects.get(id=id)) 
             
         if form.is_valid():
             producto = form.save()
@@ -514,6 +514,10 @@ def calcular_precios_producto(producto):
 def comprar_ahora(request):
     messages.error(request, f'El pago aún no ha sido implementado.')
     return redirect(index)
+
+def comprar_carrito(request):
+    messages.error(request, f'El pago aún no ha sido implementado.')
+    return redirect(carrito)
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def carrito(request):

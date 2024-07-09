@@ -244,6 +244,7 @@ td.ver-detalle {
 }
 td.ver-detalle:hover {
   text-decoration: underline; 
+  background-color:#cb6e84;
 }
 
 .boton_eliminar {
@@ -450,4 +451,16 @@ input[type="checkbox"]:checked::before {
 .table-hover .letra-boleta-anulada td {
   color: #bd273b !important;
 }
+
+.cuadro {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.cuadro span {
+  font-weight: bold;
+}
+
 

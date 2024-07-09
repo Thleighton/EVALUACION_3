@@ -73,16 +73,30 @@
                 {% endfor %}
             </tbody>
         </table>
-
+        <br>
         <div class="row">
             <div class="col-12 text-right">
                 <p>
-                    Monto sin IVA: {{ boleta.monto_sin_iva|formatear_dinero }} <br>
-                    IVA: {{ boleta.iva|formatear_dinero }} <br>
-                    Total a Pagar: {{ boleta.total_a_pagar|formatear_dinero }} <br>
+                    <span style="font-weight: bold; background-color:#ef89a1; color: black; border: 2px solid #d55674; 
+                    padding: 5px; display: inline-block; border-radius: 10px;">Monto sin IVA:</span> 
+                    <span style="background-color:#cb6e84; color: black; border: 3px solid #ef89a1; 
+                    padding: 5px; display: inline-block; margin-left: 5px; border-radius: 10px;">{{ boleta.monto_sin_iva|formatear_dinero }}</span>
+                </p>
+                <p>
+                    <span style="font-weight: bold; background-color:#ef89a1; color: black; border: 2px solid #d55674; 
+                    padding: 5px; display: inline-block; border-radius: 10px; margin-left: 82px;"> IVA: </span> 
+                    <span style="background-color:#cb6e84; color: black; border: 3px solid #ef89a1; 
+                    padding: 5px; display: inline-block; margin-left: 5px; border-radius: 10px;">{{ boleta.iva|formatear_dinero }}</span>
+                </p>
+                <p>
+                    <span style="font-weight: bold; background-color:#ef89a1; color: black; border: 2px solid #d55674; 
+                    padding: 5px; display: inline-block; border-radius: 10px; margin-left: 7px; ">Total a Pagar:</span>
+                     <span style="background-color:#cb6e84; color: black; border: 3px solid #ef89a1; 
+                     padding: 5px; display: inline-block; margin-left: 5px; border-radius: 10px;">{{ boleta.total_a_pagar|formatear_dinero }}</span>
                 </p>
             </div>
         </div>
+        
         
 
     {% else %}

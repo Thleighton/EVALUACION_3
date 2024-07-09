@@ -41,7 +41,9 @@
             <a href="{% url 'usuarios' 'crear' '0' %}" class="btn btn-primary boton_buscar_anonimo_2">Nuevo</a>
             
             <button onclick="event.preventDefault(); document.getElementById('id_imagen').click();" class="btn btn-primary boton_buscar_anonimo_2">Seleccionar imagen</button>  
-          
+
+            <button class="btn btn-primary boton_buscar_anonimo_2" id="crear_usuario_prueba">Crear usuario de prueba</button>
+            
             {% if form_usuario.instance.id %}
                 <a class="btn btn-primary " style="background-color: #e63950; color: #ffffff;" href="{% url 'usuarios' 'eliminar' form_usuario.instance.id %}">Eliminar</a>
             {% endif %}

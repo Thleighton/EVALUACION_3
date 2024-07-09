@@ -18,6 +18,48 @@ $(document).ready(function() {
           defaultOption.text = "Seleccione un tipo de usuario";
       }
   }
+  // CREAR USUARIO DE PRUEBA: Esta función permite crear un usuario de prueba usando 
+  // la API "randomuser" mientras se está programando la aplicación, pero se debe
+  // quitar en la versión final.
+  $('#crear_usuario_prueba').click(function(event) {
+    event.preventDefault();
+    $.get('https://randomuser.me/api/?results=1', // API para obtener datos de usuario al azar
+      function(data){
+        $.each(data.results, function(i, item) { // Recorrer las filas devueltas por la API
+
+          $('#limpiar_formulario').click();
+
+          $('#id_username').val(item.login.username);
+          $('#id_first_name').val(item.name.first);
+          $('#id_last_name').val(item.name.last);
+          $('#id_email').val(item.email);
+          $('#id_rut').val('11.111.111-1');
+          dir = `${item.location.street.number} ${item.location.street.name}\n${item.location.city}\n${item.location.country}`;
+          $('#id_direccion').val(dir);
+          $('#id_subscrito').val(true);
+          $('#id_imagen').val('');
+          $('#id_password1').val('Duoc@123');
+          $('#id_password2').val('Duoc@123');
+
+          Swal.fire({
+            title: 'Se ha creado un nuevo usuario de prueba',
+            html: 
+              `Se ha llenado el formulario con 
+              los datos de un usuario de prueba al azar, con la password 
+              por defecto: <br><br> <strong> "Duoc@123" </strong> <br><br>Si lo deseas puedes 
+              seleccionar una imagen de perfil y registrar este nuevo 
+              usuario presionando el botón <br><br> <strong> "Registarme" </strong>.`,
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+            }
+          })
+
+        });
+      });
+  });
 
   // Agregar una validación por defecto para que la imagen la exija como campo obligatorio
   $.extend($.validator.messages, {
@@ -26,9 +68,6 @@ $(document).ready(function() {
 
   $('#form').validate({ 
       rules: {
-        'username': {
-          required: true,
-        },
         'tipo_usuario': {
           required: true,
           inList: ['Cliente', 'Administrador'],
@@ -54,9 +93,6 @@ $(document).ready(function() {
         },
       },
       messages: {
-        'username': {
-          required: 'Debe ingresar un nombre de usuario',
-        },
         'tipo_usuario': {
           required: 'Debe ingresar un tipo de usuario',
           inList: 'Debe ingresar un tipo de usuario',
