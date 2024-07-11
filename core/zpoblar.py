@@ -285,7 +285,7 @@ def poblar_bd(test_user_email=''):
             'precio': 59990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000001.jpg'
+            'imagen': 'productos/000001_kBvdw39.jpg'
         },
         {
             'id': 2,
@@ -295,7 +295,7 @@ def poblar_bd(test_user_email=''):
             'precio': 49990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 15,
-            'imagen': 'productos/000002.jpg'
+            'imagen': 'productos/000002_zjg38GX.jpg'
         },
         {
             'id': 3,
@@ -305,7 +305,7 @@ def poblar_bd(test_user_email=''):
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000003.jpg'
+            'imagen': 'productos/000003_DxwaCeS.jpg'
         },
         {
             'id': 4,
@@ -315,7 +315,7 @@ def poblar_bd(test_user_email=''):
             'precio': 69990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000004.jpg'
+            'imagen': 'productos/000004_F3QX7Fc.jpg'
         },
         {
             'id': 5,
@@ -325,7 +325,7 @@ def poblar_bd(test_user_email=''):
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000005.jpg'
+            'imagen': 'productos/000005_ApSAbeS.jpg'
         },
         # Categoría "Deportes" (5 juegos)
         {
@@ -336,7 +336,7 @@ def poblar_bd(test_user_email=''):
             'precio': 59990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000006.jpg'
+            'imagen': 'productos/000006_wbhH394.jpg'
         },
         {
             'id': 7,
@@ -346,7 +346,7 @@ def poblar_bd(test_user_email=''):
             'precio': 69990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000007.jpg'
+            'imagen': 'productos/000007_HugwH2Y.jpg'
         },
         {
             'id': 8,
@@ -356,7 +356,7 @@ def poblar_bd(test_user_email=''):
             'precio': 49990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 15,
-            'imagen': 'productos/000008.jpg'
+            'imagen': 'productos/000008_WtJOBqZ.jpg'
         },
         {
             'id': 9,
@@ -366,7 +366,7 @@ def poblar_bd(test_user_email=''):
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000009.jpg'
+            'imagen': 'productos/000009_tL7J5cP.jpg'
         },
         {
             'id': 10,
@@ -376,7 +376,7 @@ def poblar_bd(test_user_email=''):
             'precio': 69990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000010.jpg'
+            'imagen': 'productos/000010_qB7Kyt0.jpg'
         },
         # Categoría "Puzzle" (5 juegos)
         {
@@ -387,7 +387,7 @@ def poblar_bd(test_user_email=''):
             'precio': 29990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000011.jpg'
+            'imagen': 'productos/000011_V3pdxE4.jpg'
         },
         {
             'id': 12,
@@ -397,7 +397,7 @@ def poblar_bd(test_user_email=''):
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000012.jpg'
+            'imagen': 'productos/000012_aD8XQ9t.jpg'
         },
         {
             'id': 13,
@@ -407,7 +407,7 @@ def poblar_bd(test_user_email=''):
             'precio': 39990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000013.jpg'
+            'imagen': 'productos/000013_KZxVxa1.jpg'
         },
         {
             'id': 14,
@@ -417,7 +417,7 @@ def poblar_bd(test_user_email=''):
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000014.jpg'
+            'imagen': 'productos/000014_cOze7oQ.jpg'
         },
         {
             'id': 15,
@@ -427,7 +427,7 @@ def poblar_bd(test_user_email=''):
             'precio': 29990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000015.jpg'
+            'imagen': 'productos/000015_vmLUsiW.jpg'
         },
         # Categoría "Simulación" (5 juegos)
         {
@@ -438,7 +438,7 @@ def poblar_bd(test_user_email=''):
             'precio': 39990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000016.jpg'
+            'imagen': 'productos/000016_Xn6EHti.jpg'
         },
         {
             'id': 17,
@@ -448,7 +448,7 @@ def poblar_bd(test_user_email=''):
             'precio': 99990,
             'descuento_subscriptor': 15,
             'descuento_oferta': 25,
-            'imagen': 'productos/000017.jpg'
+            'imagen': 'productos/000017_VgAJneE.jpg'
         },
         {
             'id': 18,
@@ -458,7 +458,7 @@ def poblar_bd(test_user_email=''):
             'precio': 29990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
-            'imagen': 'productos/000018.jpg'
+            'imagen': 'productos/000018_F5CUjiM.jpg'
         },
         {
             'id': 19,
@@ -468,7 +468,7 @@ def poblar_bd(test_user_email=''):
             'precio': 19990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 10,
-            'imagen': 'productos/000019.jpg'
+            'imagen': 'productos/000019_6OuR7ee.jpg'
         },
         {
             'id': 20,
@@ -478,7 +478,7 @@ def poblar_bd(test_user_email=''):
             'precio': 49990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000020.jpg'
+            'imagen': 'productos/000020_9SLe8r4.jpg'
         }
     ]
 
