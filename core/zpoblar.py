@@ -86,6 +86,91 @@ def eliminar_tablas():
 
 def poblar_bd(test_user_email=''):
     eliminar_tablas()
+    
+    crear_usuario(
+        username='ewatson',
+        tipo='Cliente', 
+        nombre='Emma', 
+        apellido='Watson', 
+        correo=test_user_email if test_user_email else 'ewatson@hogwarts.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='20612698-1',	
+        direccion='456 Elm Street, Paris, \nFrance 75000 \nFrancia', 
+        subscrito=True, 
+        imagen='perfiles/emma_bYV7a7U_bOPHb6Y.png'
+    )
+
+    crear_usuario(
+        username='nportman',
+        tipo='Cliente', 
+        nombre='Natalie', 
+        apellido='Portman', 
+        correo=test_user_email if test_user_email else 'nportman@hollywood.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='19464861-8',	
+        direccion='789 Oak Street, New York, \nNew York 10001 \nEstados Unidos', 
+        subscrito=True, 
+        imagen='perfiles/natalie.jpg'
+    )
+
+    crear_usuario(
+        username='thiddleston',
+        tipo='Cliente', 
+        nombre='Tom', 
+        apellido='Hiddleston', 
+        correo=test_user_email if test_user_email else 'thiddleston@marvel.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='23319199-k',	
+        direccion='101 Pine Street, London, \nEngland W1J 7NT \nReino Unido', 
+        subscrito=True, 
+        imagen='perfiles/Hiddleston_VR5WRd1.png'
+    )
+
+    crear_usuario(
+        username='jlawrence',
+        tipo='Cliente', 
+        nombre='Jennifer', 
+        apellido='Lawrence', 
+        correo=test_user_email if test_user_email else 'jlawrence@hollywood.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='24870967-7',	
+        direccion='202 Birch Street, Louisville, \nKentucky 40202 \nEstados Unidos', 
+        subscrito=True, 
+        imagen='perfiles/jennifer_Zn1Lwry.png'
+    )
+
+    crear_usuario(
+        username='mbjordan',
+        tipo='Cliente', 
+        nombre='Michael B.', 
+        apellido='Jordan', 
+        correo=test_user_email if test_user_email else 'mbjordan@hollywood.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='20723447-8',	
+        direccion='303 Cedar Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos', 
+        subscrito=True, 
+        imagen='perfiles/michael_b.png'
+    )
+
+    crear_usuario(
+        username='ggadot',
+        tipo='Cliente', 
+        nombre='Gal', 
+        apellido='Gadot', 
+        correo=test_user_email if test_user_email else 'ggadot@wonderwoman.com', 
+        es_superusuario=False, 
+        es_staff=False, 
+        rut='18240323-7',	
+        direccion='404 Maple Street, Tel Aviv, \nIsrael 61000 \nIsrael', 
+        subscrito=True, 
+        imagen='perfiles/gadot_ahgVEcN.png'
+    )
+    #----------
 
     crear_usuario(
         username='cevans',

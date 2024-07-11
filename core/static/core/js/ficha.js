@@ -9,9 +9,9 @@ $(document).ready(function() {
   //   $('#formulario-ficha').submit();
   // });
 
-  // $('#agregar-al-carrito').click(function() {
-  //   $('#accion').val('agregar-al-carrito');
-  //   $('#formulario-ficha').submit();
-  // });
+  $('#agregar-al-carrito').click(function() {
+  $('#accion').val('agregar-al-carrito');
+  $('#formulario-ficha').submit();
+  });
 
 });
