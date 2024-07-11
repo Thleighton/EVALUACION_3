@@ -116,7 +116,7 @@ def poblar_bd(test_user_email=''):
     )
 
     crear_usuario(
-        username='t.leithon',
+        username='tleithon',
         tipo='Cliente', 
         nombre='Tom', 
         apellido='Leithon', 
@@ -285,7 +285,7 @@ def poblar_bd(test_user_email=''):
             'precio': 59990,
             'descuento_subscriptor': 10,
             'descuento_oferta': 20,
-            'imagen': 'productos/000001_kBvdw39.jpg'
+            'imagen': 'productos/000001.jpg'
         },
         {
             'id': 2,

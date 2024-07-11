@@ -1,4 +1,4 @@
-Solo-Leveling
+Solo-Leveling Grupo 38
 
 Danae Muñoz Opitz - 008D - dana.munozo@duocuc.cl
 Thomas Leighton Nuñez - 008D - th.leighton@duocuc.cl
