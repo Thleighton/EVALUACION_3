@@ -94,7 +94,7 @@ class UsuarioForm(ModelForm):
 class PerfilForm(forms.ModelForm):
     class Meta:
         model = Perfil
-        fields = '__all__'
+        fields = ['tipo_usuario', 'rut', 'direccion', 'subscrito', 'imagen']
         widgets = {
             'direccion': forms.Textarea(),
             'imagen': forms.FileInput(),

@@ -11,10 +11,10 @@
 
     <div class="row"> 
       <div class="col-sm-12 col-md-5">
-          {{form_usuario|as_bootstrap_form}} 
+        {{ form_usuario|as_bootstrap_form:'help_text_visible=False' }} 
       </div>
       <div class="col-sm-12 col-md-4">
-          {{ form_perfil|as_bootstrap_form }}
+        {{ form_perfil|as_bootstrap_form }}
       </div>
       
       <div class="col-sm-12 col-md-3">
