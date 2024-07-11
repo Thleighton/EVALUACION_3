@@ -88,180 +88,180 @@ def poblar_bd(test_user_email=''):
     eliminar_tablas()
     
     crear_usuario(
-        username='ewatson',
+        username='nzamora',
         tipo='Cliente', 
-        nombre='Emma', 
-        apellido='Watson', 
-        correo=test_user_email if test_user_email else 'ewatson@hogwarts.com', 
+        nombre='Nicolas', 
+        apellido='Zamora', 
+        correo=test_user_email if test_user_email else 'nic.zamora@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='20612698-1',	
-        direccion='456 Elm Street, Paris, \nFrance 75000 \nFrancia', 
+        direccion='5121 Esopo, Pedro Aguirre Cerda, \nSantiago 82000 \nChile', 
         subscrito=True, 
-        imagen='perfiles/emma_bYV7a7U_bOPHb6Y.png'
+        imagen='perfiles/niczam.jpg'
     )
 
     crear_usuario(
-        username='nportman',
+        username='d.munoz',
         tipo='Cliente', 
-        nombre='Natalie', 
-        apellido='Portman', 
-        correo=test_user_email if test_user_email else 'nportman@hollywood.com', 
+        nombre='Danae', 
+        apellido='Munoz', 
+        correo=test_user_email if test_user_email else 'd.munozo@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
-        rut='19464861-8',	
-        direccion='789 Oak Street, New York, \nNew York 10001 \nEstados Unidos', 
+        rut='234779295',	
+        direccion='233 La Victoria, Villa Sur, \nSantiago 2431 \nChile', 
         subscrito=True, 
-        imagen='perfiles/natalie.jpg'
+        imagen='perfiles/dmunozo.png'
     )
 
     crear_usuario(
-        username='thiddleston',
+        username='t.leithon',
         tipo='Cliente', 
         nombre='Tom', 
-        apellido='Hiddleston', 
-        correo=test_user_email if test_user_email else 'thiddleston@marvel.com', 
+        apellido='Leithon', 
+        correo=test_user_email if test_user_email else 't.leithon@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
-        rut='23319199-k',	
-        direccion='101 Pine Street, London, \nEngland W1J 7NT \nReino Unido', 
+        rut='22319199-k',	
+        direccion='102 Renca, Colina, \nSantiago 232 101 \nChile', 
         subscrito=True, 
-        imagen='perfiles/Hiddleston_VR5WRd1.png'
+        imagen='perfiles/tleithon.jpg'
     )
 
     crear_usuario(
-        username='jlawrence',
+        username='czamora',
         tipo='Cliente', 
-        nombre='Jennifer', 
-        apellido='Lawrence', 
-        correo=test_user_email if test_user_email else 'jlawrence@hollywood.com', 
+        nombre='Claudia', 
+        apellido='Zamora', 
+        correo=test_user_email if test_user_email else 'c.zamora@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='24870967-7',	
-        direccion='202 Birch Street, Louisville, \nKentucky 40202 \nEstados Unidos', 
+        direccion='202 Pudahuel, Laguna Sur, \nSantiago 40202 \nChile', 
         subscrito=True, 
-        imagen='perfiles/jennifer_Zn1Lwry.png'
+        imagen='perfiles/czamora.jpg'
     )
 
     crear_usuario(
-        username='mbjordan',
+        username='mnavarro',
         tipo='Cliente', 
-        nombre='Michael B.', 
-        apellido='Jordan', 
-        correo=test_user_email if test_user_email else 'mbjordan@hollywood.com', 
+        nombre='Michael.', 
+        apellido='Navarro', 
+        correo=test_user_email if test_user_email else 'mnavarro@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='20723447-8',	
-        direccion='303 Cedar Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos', 
+        direccion='303 Villa  Sur, Pedro Aguirre Cerda, \nSantiago 90001 \nChile', 
         subscrito=True, 
-        imagen='perfiles/michael_b.png'
+        imagen='perfiles/mnavarro.jpg'
     )
 
     crear_usuario(
-        username='ggadot',
+        username='amunoz',
         tipo='Cliente', 
-        nombre='Gal', 
-        apellido='Gadot', 
-        correo=test_user_email if test_user_email else 'ggadot@wonderwoman.com', 
+        nombre='Ana', 
+        apellido='Munoz', 
+        correo=test_user_email if test_user_email else 'a.munoz@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='18240323-7',	
-        direccion='404 Maple Street, Tel Aviv, \nIsrael 61000 \nIsrael', 
+        direccion='503 Maipu, El monte, \nSantiago 61000 \nChile', 
         subscrito=True, 
-        imagen='perfiles/gadot_ahgVEcN.png'
+        imagen='perfiles/amunoz.jpg'
     )
     #----------
 
     crear_usuario(
-        username='cevans',
+        username='eperez',
         tipo='Cliente', 
-        nombre='Chris', 
-        apellido='Evans', 
-        correo=test_user_email if test_user_email else 'cevans@marvel.com', 
+        nombre='Evaristo', 
+        apellido='Perez', 
+        correo=test_user_email if test_user_email else 'eperez@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='25.747.200-0',	
-        direccion='123 Main Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos', 
+        direccion='223 Las Condes, Providencia, \nSantiago 61000 \nChile', 
         subscrito=True, 
-        imagen='perfiles/cevans.jpg')
+        imagen='perfiles/eperez.jpg')
 
     crear_usuario(
-        username='eolsen',
+        username='mferrada',
         tipo='Cliente', 
-        nombre='Elizabeth', 
-        apellido='Olsen', 
-        correo=test_user_email if test_user_email else 'eolsen@marvel.com', 
+        nombre='Matias', 
+        apellido='Ferrada', 
+        correo=test_user_email if test_user_email else 'm.ferrada@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
-        rut='12.202.357-5', 
-        direccion='Albert Street, New York, \nNew York 10001 \nEstados Unidos', 
+        rut='20.202.357-5', 
+        direccion='Las Lilas, PAC, \nSantiago 10001 \nChile', 
         subscrito=True, 
-        imagen='perfiles/eolsen.jpg')
+        imagen='perfiles/mferrada.jpg')
 
     crear_usuario(
-        username='tholland',
+        username='ccontreras',
         tipo='Cliente', 
-        nombre='Tom', 
-        apellido='Holland', 
-        correo=test_user_email if test_user_email else 'tholland@marvel.com', 
+        nombre='Camilo', 
+        apellido='Contreras', 
+        correo=test_user_email if test_user_email else 'ccontreras@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='11.991.600-3', 
-        direccion='105 Apple Park Way, \nCupertino, CA 95014 \nEstados Unidos', 
+        direccion='San Jose de la Estrella, Puente Alto, \nSantiago, 95014 \nChile', 
         subscrito=False, 
-        imagen='perfiles/tholland.jpg')
+        imagen='perfiles/ccontreras.jpg')
 
     crear_usuario(
-        username='sjohansson',
+        username='amontalva',
         tipo='Cliente', 
-        nombre='Scarlett', 
-        apellido='Johansson', 
-        correo=test_user_email if test_user_email else 'sjohansson@marvel.com', 
+        nombre='Antonia', 
+        apellido='Montalva', 
+        correo=test_user_email if test_user_email else 'amontalva@duocuc.cl', 
         es_superusuario=False, 
         es_staff=False, 
         rut='16.469.725-8', 
-        direccion='350 5th Ave, \nNew York, NY 10118 \nEstados Unidos', 
+        direccion='San Miguel 5th Avenida, \nSantiago, 10118 \nChile', 
         subscrito=False, 
-        imagen='perfiles/sjohansson.jpg')
+        imagen='perfiles/amontalva.jpg')
 
     crear_usuario(
-        username='cpratt',
+        username='rgonzalez',
         tipo='Administrador', 
-        nombre='Chris', 
-        apellido='Pratt', 
-        correo=test_user_email if test_user_email else 'cpratt@marvel.com', 
+        nombre='Rodrigro', 
+        apellido='Gonzalez', 
+        correo=test_user_email if test_user_email else 'rgonzalez@duocuc.cl', 
         es_superusuario=False, 
         es_staff=True, 
         rut='19.441.980-5', 
-        direccion='10 Pine Road, Miami, \nFlorida 33101 \nEstados Unidos', 
+        direccion='San Felipe 5323, \nValparaiso 33101 \nChile', 
         subscrito=False, 
-        imagen='perfiles/cpratt.jpg')
+        imagen='perfiles/rgonzalez.jpg')
     
     crear_usuario(
-        username='mruffalo',
+        username='cmartinez',
         tipo='Administrador', 
-        nombre='Mark', 
-        apellido='Ruffalo', 
-        correo=test_user_email if test_user_email else 'mruffalo@marvel.com', 
+        nombre='Cesar', 
+        apellido='Martinez', 
+        correo=test_user_email if test_user_email else 'cmartinez@duocuc.cl', 
         es_superusuario=False, 
         es_staff=True, 
-        rut='21.708.052-5', 
-        direccion='1600 Pennsylvania Avenue NW, \nWashington, D.C. \nEstados Unidos', 
+        rut='21.708.052-3', 
+        direccion='Peñaflor 5422, \nSantiago \nChile', 
         subscrito=False, 
-        imagen='perfiles/mruffalo.jpg')
+        imagen='perfiles/cmartinez.jpg')
 
     crear_usuario(
         username='super',
         tipo='Superusuario',
-        nombre='Robert',
-        apellido='Downey Jr.',
-        correo=test_user_email if test_user_email else 'rdowneyjr@marvel.com',
+        nombre='Sol',
+        apellido='Martinez',
+        correo=test_user_email if test_user_email else 'smartinez@duocuc.cl',
         es_superusuario=True,
         es_staff=True,
         rut='13.029.317-4',
-        direccion='15 Oak Street, Los Angeles, \nCalifornia 90001 \nEstados Unidos',
+        direccion='Peñaflor 5422, \nSantiago \nChile',
         subscrito=False,
-        imagen='perfiles/rdowneyjr.jpg')
+        imagen='perfiles/smartinez.jpg')
     
     categorias_data = [
         { 'id': 1, 'nombre': 'Shooter'},
