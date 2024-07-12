@@ -540,13 +540,12 @@ def carrito(request):
     return render(request, 'core/carrito.html', context)
 
 def agregar_producto_al_carrito(request, producto_id):
-
     if es_personal_autenticado_y_activo(request.user):
         messages.error(request, f'Para poder comprar debes tener cuenta de Cliente, pero tu cuenta es de {request.user.perfil.tipo_usuario}.')
-        return redirect(index)
+        return redirect('index')
     elif es_usuario_anonimo(request.user):
         messages.info(request, 'Para poder comprar, primero debes registrarte como cliente.')
-        return redirect(registro)
+        return redirect('registro')
 
     perfil = request.user.perfil
     producto = Producto.objects.get(id=producto_id)
@@ -555,7 +554,7 @@ def agregar_producto_al_carrito(request, producto_id):
 
     precio = producto.precio
     descuento_subscriptor = producto.descuento_subscriptor if perfil.subscrito else 0
-    descuento_total=producto.descuento_subscriptor + producto.descuento_oferta if perfil.subscrito else producto.descuento_oferta
+    descuento_total = producto.descuento_subscriptor + producto.descuento_oferta if perfil.subscrito else producto.descuento_oferta
     precio_a_pagar = precio_subscr if perfil.subscrito else precio_oferta
     descuentos = precio - precio_subscr if perfil.subscrito else precio - precio_oferta
 
@@ -570,7 +569,9 @@ def agregar_producto_al_carrito(request, producto_id):
         precio_a_pagar=precio_a_pagar
     )
 
-    return redirect(ficha, producto_id)
+    messages.success(request, 'El producto se ha añadido correctamente al carrito.')
+
+    return redirect('ficha', producto_id)
 
 @user_passes_test(es_cliente_autenticado_y_activo)
 def eliminar_producto_en_carrito(request, carrito_id):

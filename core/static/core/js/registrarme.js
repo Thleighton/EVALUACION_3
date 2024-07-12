@@ -44,7 +44,7 @@ $(document).ready(function() {
         'password1': {
           required: true,
           minlength: 8,
-          maxlength: 8,
+          maxlength: 15,
         },
         'password2': {
           required: true,
